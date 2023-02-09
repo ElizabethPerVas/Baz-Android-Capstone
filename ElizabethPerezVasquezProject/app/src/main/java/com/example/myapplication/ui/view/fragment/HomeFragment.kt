@@ -7,15 +7,16 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.myapplication.databinding.FragmentCoinsBinding
+import com.example.myapplication.R
 import com.example.myapplication.databinding.FragmentHomeBinding
 import com.example.myapplication.ui.adapter.CoinAdapter
+import com.example.myapplication.ui.view.interfaces.ItemButtonCallback
 import com.example.myapplication.ui.viewmodel.CoinViewModel
 
-class HomeFragment : Fragment() {
+class HomeFragment : Fragment(), ItemButtonCallback {
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
-    private val coinAdapter: CoinAdapter by lazy { CoinAdapter()}
+    private val coinAdapter: CoinAdapter by lazy { CoinAdapter(this)}
     private val coinViewModel : CoinViewModel by viewModels()
 
     companion object {
@@ -69,7 +70,17 @@ class HomeFragment : Fragment() {
                 coinAdapter.submitList(coinsList)
             }
         }
+    }
 
+    override fun onClickCheckBox(id: String, enabled: Boolean) {
 
+    }
+
+    override fun onClickButton(id: String?) {
+        val onClickCoinFragment = CoinsFragment.newInstance()
+        requireActivity().supportFragmentManager.beginTransaction()
+            .replace(R.id.drawer_layout, onClickCoinFragment, CoinsFragment.TAG)
+            .addToBackStack(CoinsFragment.TAG)
+            .commit()
     }
 }

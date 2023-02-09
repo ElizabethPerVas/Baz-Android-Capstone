@@ -1,21 +1,18 @@
 package com.example.myapplication.ui.adapter
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.core.content.ContextCompat
-import androidx.fragment.app.FragmentActivity
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.myapplication.R
 import com.example.myapplication.data.model.response.CoinModelResponse
 import com.example.myapplication.databinding.ItemCoinBinding
-import com.example.myapplication.ui.view.fragment.CoinsFragment
+import com.example.myapplication.ui.view.interfaces.ItemButtonCallback
 
 
-class CoinAdapter () : ListAdapter<CoinModelResponse, CoinAdapter.ViewHolderCoin>(diffCallback) {
+class CoinAdapter (private val callback: ItemButtonCallback) : ListAdapter<CoinModelResponse, CoinAdapter.ViewHolderCoin>(diffCallback) {
 
     companion object{
         val diffCallback = object : DiffUtil.ItemCallback<CoinModelResponse>(){
@@ -65,6 +62,7 @@ class CoinAdapter () : ListAdapter<CoinModelResponse, CoinAdapter.ViewHolderCoin
                     "aave_usd" -> ivCoin.setImageDrawable(ContextCompat.getDrawable(binding.root.context, R.drawable.aave))
                     else -> ivCoin.setImageDrawable(ContextCompat.getDrawable(binding.root.context, R.drawable.bitcoin))
                 }
+                btnDetail.setOnClickListener { callback.onClickButton(information.nameCoin) }
             }
         }
     }
