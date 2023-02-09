@@ -2,13 +2,17 @@ package com.example.myapplication.ui.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.example.myapplication.R
 import com.example.myapplication.data.model.response.CoinModelResponse
 import com.example.myapplication.databinding.ItemCoinBinding
 
+
 class CoinAdapter () : ListAdapter<CoinModelResponse, CoinAdapter.ViewHolderCoin>(diffCallback) {
+
     companion object{
         val diffCallback = object : DiffUtil.ItemCallback<CoinModelResponse>(){
             override fun areItemsTheSame(
@@ -40,12 +44,23 @@ class CoinAdapter () : ListAdapter<CoinModelResponse, CoinAdapter.ViewHolderCoin
         fun bind(information: CoinModelResponse) {
             binding.apply {
                 tvNameCoin.setText(information.nameCoin)
-                tvMiniumAmount.setText(information.miniumAmount?: "0.0")
-                tvMaximunAmount.setText(information.maximumAmount?: "0.0")
-                tvMiniumPrice.setText(information.miniumPrice?: "0.0")
-                tvMaximunPrice.setText(information.maxiumPrice?: "0.0")
-                tvMiniumValue.setText(information.miniumValue?: "0.0")
-                tvMaximunValue.setText(information.maximunValue?: "0.0")
+                tvMiniumAmount.setText("$" +information.miniumPrice?: "$0.0")
+                tvMaximunAmount.setText("$" +information.maxiumPrice?: "$0.0")
+                when(information.nameCoin){
+                    "eth_btc" -> ivCoin.setImageDrawable(ContextCompat.getDrawable(binding.root.context, R.drawable.eth))
+                    "uni_usd" -> ivCoin.setImageDrawable(ContextCompat.getDrawable(binding.root.context, R.drawable.uni))
+                    "xrp_btc" -> ivCoin.setImageDrawable(ContextCompat.getDrawable(binding.root.context, R.drawable.xrp))
+                    "ltc_btc" -> ivCoin.setImageDrawable(ContextCompat.getDrawable(binding.root.context, R.drawable.ltc))
+                    "bch_btc" -> ivCoin.setImageDrawable(ContextCompat.getDrawable(binding.root.context, R.drawable.bch))
+                    "tusd_mxn" -> ivCoin.setImageDrawable(ContextCompat.getDrawable(binding.root.context, R.drawable.tusd))
+                    "bat_btc" -> ivCoin.setImageDrawable(ContextCompat.getDrawable(binding.root.context, R.drawable.bat))
+                    "mana_btc" -> ivCoin.setImageDrawable(ContextCompat.getDrawable(binding.root.context, R.drawable.mana))
+                    "btc_ars" -> ivCoin.setImageDrawable(ContextCompat.getDrawable(binding.root.context, R.drawable.ars))
+                    "dai_ars" -> ivCoin.setImageDrawable(ContextCompat.getDrawable(binding.root.context, R.drawable.dai))
+                    "usd_mxn" -> ivCoin.setImageDrawable(ContextCompat.getDrawable(binding.root.context, R.drawable.usdc))
+                    "aave_usd" -> ivCoin.setImageDrawable(ContextCompat.getDrawable(binding.root.context, R.drawable.aave))
+                    else -> ivCoin.setImageDrawable(ContextCompat.getDrawable(binding.root.context, R.drawable.bitcoin))
+                }
             }
         }
     }

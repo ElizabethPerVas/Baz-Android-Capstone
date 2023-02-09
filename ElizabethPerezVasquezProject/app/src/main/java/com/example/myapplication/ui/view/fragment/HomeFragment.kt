@@ -5,15 +5,13 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.content.ContextCompat
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.myapplication.R
 import com.example.myapplication.databinding.FragmentCoinsBinding
 import com.example.myapplication.ui.adapter.CoinAdapter
 import com.example.myapplication.ui.viewmodel.CoinViewModel
 
-class CoinsFragment : Fragment() {
+class HomeFragment : Fragment() {
     private var _binding: FragmentCoinsBinding? = null
     private val binding get() = _binding!!
     private val coinAdapter: CoinAdapter by lazy { CoinAdapter()}
@@ -34,8 +32,13 @@ class CoinsFragment : Fragment() {
         _binding = FragmentCoinsBinding.inflate(inflater, container, false)
         setupObservers()
         initView()
+        initImage()
         onClickCoin()
         return binding.root
+    }
+
+    private fun initImage() {
+
     }
 
 
@@ -45,8 +48,7 @@ class CoinsFragment : Fragment() {
     }
 
     private fun onClickCoin() {
-        _binding!!.rvCoins.setOnClickListener {
-        }
+
     }
 
     private fun initView() {
@@ -66,5 +68,7 @@ class CoinsFragment : Fragment() {
                 coinAdapter.submitList(coinsList)
             }
         }
+
+
     }
 }

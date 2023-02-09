@@ -1,102 +1,155 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:app="http://schemas.android.com/apk/res-auto"
+<androidx.cardview.widget.CardView
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/mainConten"
+    android:id="@+id/mainContent"
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:layout_margin="10dp"
+    app:cardCornerRadius="24dp"
+    app:cardElevation="24dp"
+    app:cardBackgroundColor="@color/aliceblue">
 
-    <ImageView
-        android:id="@+id/ivCoin"
-        android:layout_width="200dp"
-        android:layout_height="200dp"
-        android:paddingTop="32dp"
-        android:paddingBottom="32dp"
-        android:paddingStart="32dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/mainAdapter"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-    </ImageView>
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_begin="161dp" />
 
-    <TextView
-        android:id="@+id/tvNameCoin"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:hint="@string/name_coin"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/ivCoin"
-        app:layout_constraintTop_toTopOf="parent">
+        <TextView
+            android:id="@+id/tvNameCoinLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/name_coin"
+            android:textColor="@color/black"
+            android:layout_marginTop="16dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginEnd="24dp"
+            android:drawableLeft="@drawable/ic_bitcoin_asset"
+            android:drawablePadding="10dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/guideline3"
+            app:layout_constraintTop_toTopOf="parent">
 
-    </TextView>
+        </TextView>
 
-    <TextView
-        android:id="@+id/tvMiniumAmount"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:hint="@string/minimum_amount"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/ivCoin"
-        app:layout_constraintTop_toBottomOf="@+id/tvNameCoin">
+        <TextView
+            android:id="@+id/tvNameCoin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="@string/name_coin"
+            android:layout_marginStart="24dp"
+            android:layout_marginEnd="24dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/guideline3"
+            app:layout_constraintTop_toBottomOf="@+id/tvNameCoinLabel">
 
-    </TextView>
+        </TextView>
 
-    <TextView
-        android:id="@+id/tvMaximunAmount"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:hint="@string/maximun_amoun"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/ivCoin"
-        app:layout_constraintTop_toBottomOf="@+id/tvMiniumAmount">
+        <TextView
+            android:id="@+id/tvMaximunAmountLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/maximum_price"
+            android:layout_marginTop="16dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginEnd="24dp"
+            android:textColor="@color/black"
+            android:drawableLeft="@drawable/ic_arrow_up"
+            android:drawablePadding="10dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.572"
+            app:layout_constraintStart_toStartOf="@+id/guideline3"
+            app:layout_constraintTop_toBottomOf="@+id/tvNameCoin">
 
-    </TextView>
+        </TextView>
 
-    <TextView
-        android:id="@+id/tvMiniumPrice"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:hint="@string/minimum_price"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/ivCoin"
-        app:layout_constraintTop_toBottomOf="@+id/tvMaximunAmount">
+        <TextView
+            android:id="@+id/tvMaximunAmount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="@string/maximum_price"
+            android:layout_marginStart="24dp"
+            android:layout_marginEnd="24dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/guideline3"
+            app:layout_constraintTop_toBottomOf="@+id/tvMaximunAmountLabel">
 
-    </TextView>
+        </TextView>
 
-    <TextView
-        android:id="@+id/tvMaximunPrice"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:hint="@string/maximum_price"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.474"
-        app:layout_constraintStart_toEndOf="@+id/ivCoin"
-        app:layout_constraintTop_toBottomOf="@+id/tvMiniumPrice">
+        <TextView
+            android:id="@+id/tvMiniumAmountLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableLeft="@drawable/ic_arrow_down"
+            android:drawablePadding="10dp"
+            android:text="@string/minimum_price"
+            android:textColor="@color/black"
+            android:layout_marginTop="16dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginEnd="24dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/guideline3"
+            app:layout_constraintTop_toBottomOf="@+id/tvMaximunAmount">
 
-    </TextView>
+        </TextView>
 
-    <TextView
-        android:id="@+id/tvMiniumValue"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:hint="@string/minimum_value"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.457"
-        app:layout_constraintStart_toEndOf="@+id/ivCoin"
-        app:layout_constraintTop_toBottomOf="@+id/tvMaximunPrice">
+        <TextView
+            android:id="@+id/tvMiniumAmount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginEnd="24dp"
+            android:hint="@string/minimum_price"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/guideline3"
+            app:layout_constraintTop_toBottomOf="@+id/tvMiniumAmountLabel">
 
-    </TextView>
+        </TextView>
 
-    <TextView
-        android:id="@+id/tvMaximunValue"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:hint="@string/maximum_value"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.443"
-        app:layout_constraintStart_toEndOf="@+id/ivCoin"
-        app:layout_constraintTop_toBottomOf="@+id/tvMiniumValue">
+        <androidx.appcompat.widget.AppCompatCheckBox
+            android:id="@+id/cbAggregate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/aggregate_order"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/guideline3"
+            app:layout_constraintTop_toBottomOf="@+id/tvMiniumAmount">
 
-    </TextView>
+        </androidx.appcompat.widget.AppCompatCheckBox>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <Button
+            android:id="@+id/btnDetail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:layout_marginTop="16dp"
+            android:text="@string/detail_coin"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/guideline3"
+            app:layout_constraintTop_toBottomOf="@+id/cbAggregate">
+
+        </Button>
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/ivCoin"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:src="@drawable/bitcoin"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/guideline3"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+        </androidx.appcompat.widget.AppCompatImageView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.cardview.widget.CardView>
