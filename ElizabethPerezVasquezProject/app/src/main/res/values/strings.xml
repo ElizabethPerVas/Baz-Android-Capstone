@@ -1,12 +1,12 @@
 <resources>
     <string name="app_name">Coins</string>
-    <string name="name_coin">Name Coin:</string>
+    <string name="name_coin">Name Coin: </string>
     <string name="minimum_amount">Minium Amount</string>
     <string name="maximun_amount">Maximun Amount Coin:</string>
     <string name="minimum_price">Minium Price:</string>
-    <string name="maximum_price">Maximun Price:</string>
-    <string name="minimum_value">Minium Value:</string>
-    <string name="maximum_value">Maximun Value:</string>
+    <string name="maximum_price">Maximun Price: </string>
+    <string name="minimum_value">Minium Value: </string>
+    <string name="maximum_value">Maximun Value: </string>
     <string name="title_activity_main2">MainActivity2</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
@@ -16,9 +16,14 @@
     <string name="action_settings">Settings</string>
     <string name="aggregate_order">Aggregate orders by price.</string>
     <string name="detail_coin">Show More</string>
-
+    <string name="sequence_coin">Sequence: </string>
+    <string name="update_At">Update At: </string>
     <string name="menu_home">Home</string>
     <string name="menu_gallery">Gallery</string>
     <string name="menu_slideshow">Slideshow</string>
+    <string name="title_detail">Titulo: </string>
+    <string name="price">Price: </string>
+    <string name="amount">Amount: </string>
+    <string name="order_id">Order ID: </string>
 
 </resources>

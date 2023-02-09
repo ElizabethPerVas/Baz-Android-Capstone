@@ -10,14 +10,16 @@ import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.myapplication.R
 import com.example.myapplication.databinding.FragmentCoinsBinding
+import com.example.myapplication.ui.adapter.AsksBidsAdapter
 import com.example.myapplication.ui.adapter.CoinAdapter
+import com.example.myapplication.ui.viewmodel.CoinDetailViewModel
 import com.example.myapplication.ui.viewmodel.CoinViewModel
 
 class CoinsFragment : Fragment() {
     private var _binding: FragmentCoinsBinding? = null
     private val binding get() = _binding!!
-    private val coinAdapter: CoinAdapter by lazy { CoinAdapter()}
-    private val coinViewModel : CoinViewModel by viewModels()
+    private val coinDetailAdapter: AsksBidsAdapter by lazy { AsksBidsAdapter()}
+    private val coinDetailViewModel : CoinDetailViewModel by viewModels()
 
     companion object {
         val TAG = CoinsFragment::class.java.canonicalName!!
@@ -33,26 +35,13 @@ class CoinsFragment : Fragment() {
     ): View? {
         _binding = FragmentCoinsBinding.inflate(inflater, container, false)
         setupObservers()
-        initView()
-        onClickCoin()
         return binding.root
     }
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        coinViewModel.getCoin()
-    }
-
-    private fun onClickCoin() {
-        _binding!!.rvCoins.setOnClickListener {
-        }
-    }
-
-    private fun initView() {
-        _binding!!.rvCoins.setHasFixedSize(false)
-        _binding!!.rvCoins.layoutManager = LinearLayoutManager(context)
-        _binding!!.rvCoins.adapter = coinAdapter
+        coinDetailViewModel.getCoin()
     }
 
     override fun onDestroyView() {
@@ -61,9 +50,9 @@ class CoinsFragment : Fragment() {
     }
 
     private fun setupObservers(){
-        coinViewModel.apply {
+        coinDetailViewModel.apply {
             coinsLiveData.observe(viewLifecycleOwner){ coinsList ->
-                coinAdapter.submitList(coinsList)
+                coinDetailAdapter.submitList(coinsList)
             }
         }
     }

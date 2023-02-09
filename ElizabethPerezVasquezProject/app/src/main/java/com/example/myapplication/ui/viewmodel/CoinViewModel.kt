@@ -5,7 +5,6 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.myapplication.data.CoinRepositoryRetrofit
-import com.example.myapplication.data.model.CoinsModelResponse
 import com.example.myapplication.data.model.response.CoinModelResponse
 import com.example.myapplication.domain.GetCoinsRetrofitUseCase
 import kotlinx.coroutines.launch

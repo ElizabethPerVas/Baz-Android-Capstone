@@ -8,19 +8,143 @@
     tools:context=".ui.view.fragment.CoinsFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/mainConten"
+        android:id="@+id/mainContenCoins"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rvCoins"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            app:layout_constraintBottom_toBottomOf="parent"
+        <ImageView
+            android:id="@+id/ivImageCoin"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:src="@drawable/bitcoin"
+            android:layout_marginTop="24dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent">
+        </ImageView>
 
+        <TextView
+            android:id="@+id/tvNameDetailCoinLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/name_coin"
+            android:layout_marginTop="30dp"
+            android:textColor="@color/black"
+            android:layout_marginStart="8dp"
+            android:drawableLeft="@drawable/ic_bitcoin_asset"
+            android:drawablePadding="3dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/ivImageCoin">
+        </TextView>
+
+        <TextView
+            android:id="@+id/tvNameDetailCoin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="@string/name_coin"
+            app:layout_constraintStart_toEndOf="@+id/tvNameDetailCoinLabel"
+            app:layout_constraintTop_toTopOf="@+id/tvNameDetailCoinLabel">
+
+        </TextView>
+
+        <TextView
+            android:id="@+id/tvSequenceDetailCoinLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/sequence_coin"
+            android:layout_marginTop="24dp"
+            android:textColor="@color/black"
+            android:layout_marginStart="8dp"
+            android:drawableLeft="@drawable/ic_sequence_2"
+            android:drawablePadding="3dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvNameDetailCoin">
+        </TextView>
+
+        <TextView
+            android:id="@+id/tvSequenceDetailCoin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="@string/sequence_coin"
+            app:layout_constraintStart_toEndOf="@+id/tvSequenceDetailCoinLabel"
+            app:layout_constraintTop_toTopOf="@+id/tvSequenceDetailCoinLabel">
+        </TextView>
+
+        <TextView
+            android:id="@+id/tvUpdateAtLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/update_At"
+            android:layout_marginTop="24dp"
+            android:textColor="@color/black"
+            android:layout_marginStart="8dp"
+            android:drawableLeft="@drawable/ic_update_at"
+            android:drawablePadding="3dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvSequenceDetailCoin">
+        </TextView>
+
+        <TextView
+            android:id="@+id/tvUpdateAt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="@string/update_At"
+            app:layout_constraintStart_toEndOf="@+id/tvUpdateAtLabel"
+            app:layout_constraintTop_toTopOf="@+id/tvUpdateAtLabel">
+        </TextView>
+
+        <TextView
+            android:id="@+id/tvMaximunPriceLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:drawableLeft="@drawable/ic_arrow_up"
+            android:drawablePadding="3dp"
+            android:text="@string/maximum_price"
+            android:textColor="@color/black"
+            app:layout_constraintStart_toEndOf="@+id/tvSequenceDetailCoin"
+            app:layout_constraintTop_toTopOf="@+id/tvSequenceDetailCoin">
+        </TextView>
+
+        <TextView
+            android:id="@+id/tvMaximunPrice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="@string/maximum_price"
+            app:layout_constraintStart_toEndOf="@+id/tvMaximunPriceLabel"
+            app:layout_constraintTop_toTopOf="@+id/tvMaximunPriceLabel">
+        </TextView>
+
+        <TextView
+            android:id="@+id/tvMiniumPriceLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableLeft="@drawable/ic_arrow_down"
+            android:drawablePadding="3dp"
+            android:text="@string/minimum_price"
+            android:textColor="@color/black"
+            android:layout_marginStart="16dp"
+            app:layout_constraintStart_toEndOf="@+id/tvUpdateAt"
+            app:layout_constraintTop_toTopOf="@+id/tvUpdateAt">
+        </TextView>
+
+        <TextView
+            android:id="@+id/tvMiniumPrice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="@string/minimum_price"
+            app:layout_constraintStart_toEndOf="@+id/tvMiniumPriceLabel"
+            app:layout_constraintTop_toTopOf="@+id/tvMiniumPriceLabel">
+        </TextView>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvAskBids"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvUpdateAtLabel">
+        </androidx.recyclerview.widget.RecyclerView>
     </androidx.constraintlayout.widget.ConstraintLayout>
-
 </ScrollView>
