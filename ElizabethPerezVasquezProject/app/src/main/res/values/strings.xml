@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">My Application</string>
+    <string name="name_coin">Name Coin</string>
+    <string name="minimum_amount">Minium Amount</string>
+    <string name="maximun_amoun">Maximun Amount Coin</string>
+    <string name="minimum_price">Minium Price</string>
+    <string name="maximum_price">Maximun Price</string>
+    <string name="minimum_value">Minium Value</string>
+    <string name="maximum_value">Maximun Value</string>
+
 </resources>
