@@ -41,7 +41,7 @@ class CoinsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        coinDetailViewModel.getCoin()
+
     }
 
     override fun onDestroyView() {
@@ -51,7 +51,7 @@ class CoinsFragment : Fragment() {
 
     private fun setupObservers(){
         coinDetailViewModel.apply {
-            coinsLiveData.observe(viewLifecycleOwner){ coinsList ->
+            coinsDetailLiveData.observe(viewLifecycleOwner){ coinsList ->
                 coinDetailAdapter.submitList(coinsList)
             }
         }

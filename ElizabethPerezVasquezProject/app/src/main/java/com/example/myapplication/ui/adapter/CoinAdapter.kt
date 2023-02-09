@@ -1,14 +1,18 @@
 package com.example.myapplication.ui.adapter
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.core.content.ContextCompat
+import androidx.fragment.app.FragmentActivity
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.myapplication.R
 import com.example.myapplication.data.model.response.CoinModelResponse
 import com.example.myapplication.databinding.ItemCoinBinding
+import com.example.myapplication.ui.view.fragment.CoinsFragment
 
 
 class CoinAdapter () : ListAdapter<CoinModelResponse, CoinAdapter.ViewHolderCoin>(diffCallback) {
