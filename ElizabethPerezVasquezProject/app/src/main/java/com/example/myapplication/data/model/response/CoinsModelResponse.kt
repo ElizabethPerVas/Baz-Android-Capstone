@@ -1,4 +1,4 @@
-package com.example.myapplication.data.model
+package com.example.myapplication.data.model.response
 
 import com.example.myapplication.data.model.response.CoinModelResponse
 import com.google.gson.annotations.SerializedName

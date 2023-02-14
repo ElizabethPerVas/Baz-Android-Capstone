@@ -6,15 +6,17 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.myapplication.data.CoinRepositoryRetrofit
 import com.example.myapplication.data.model.response.CoinModelResponse
-import com.example.myapplication.domain.GetCoinsRetrofitUseCase
+import com.example.myapplication.domain.usecase.GetCoinsRetrofitUseCase
 import kotlinx.coroutines.launch
 
-class CoinViewModel (
+class CoinViewModel(
     private val repositoryRetrofit: CoinRepositoryRetrofit = CoinRepositoryRetrofit(),
-    private val getCoinsRetrofitUseCase: GetCoinsRetrofitUseCase = GetCoinsRetrofitUseCase(repositoryRetrofit)
+    private val getCoinsRetrofitUseCase: GetCoinsRetrofitUseCase = GetCoinsRetrofitUseCase(
+        repositoryRetrofit
+    ),
 ) : ViewModel() {
     private val _coinsLiveData = MutableLiveData<List<CoinModelResponse>>()
-    val coinsLiveData : LiveData<List<CoinModelResponse>> = _coinsLiveData
+    val coinsLiveData: LiveData<List<CoinModelResponse>> = _coinsLiveData
 
     fun getCoin() {
         viewModelScope.launch {

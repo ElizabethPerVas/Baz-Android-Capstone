@@ -2,9 +2,10 @@ plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
     id 'kotlin-android'
-    id 'kotlin-kapt'
     id 'dagger.hilt.android.plugin'
     id 'kotlin-parcelize'
+    id 'kotlin-kapt'
+    id 'androidx.navigation.safeargs'
 }
 
 android {
@@ -59,7 +60,6 @@ dependencies {
     implementation "androidx.activity:activity-ktx:1.6.1"
     testImplementation 'junit:junit:4.+'
     testImplementation "io.mockk:mockk:1.12.2"
-    testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:1.6.4"
     testImplementation "androidx.arch.core:core-testing:2.1.0"
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
@@ -84,6 +84,7 @@ dependencies {
     /*             Corrutinas             */
     /**************************************/
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.4'
+    testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:1.6.4"
 
     /**************************************/
     /*             Dagger Hilt            */
@@ -100,12 +101,14 @@ dependencies {
     /**************************************/
     /*              Navigation            */
     /**************************************/
-    implementation("androidx.navigation:navigation-fragment-ktx:2.5.3")
-    implementation("androidx.navigation:navigation-ui-ktx:2.5.3")
-
+   // implementation("androidx.navigation.safeargs:androidx.navigation.safeargs.gradle.plugin:2.5.3")
+    implementation "androidx.navigation:navigation-fragment-ktx:2.5.3"
+    implementation "androidx.navigation:navigation-ui-ktx:2.5.3"
+    implementation "androidx.navigation:navigation-fragment-ktx:2.5.3"
+    implementation "androidx.navigation:navigation-ui-ktx:2.5.3"
+    implementation("androidx.navigation:navigation-dynamic-features-fragment:2.5.3")
     /**************************************/
     /*              Card View             */
     /**************************************/
-
     implementation("androidx.cardview:cardview:1.0.0")
 }

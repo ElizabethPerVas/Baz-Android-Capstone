@@ -5,21 +5,25 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.content.ContextCompat
 import androidx.fragment.app.viewModels
-import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.myapplication.R
+import androidx.navigation.fragment.findNavController
+import com.example.myapplication.data.model.request.OrderRequest
 import com.example.myapplication.databinding.FragmentCoinsBinding
-import com.example.myapplication.ui.adapter.AsksBidsAdapter
-import com.example.myapplication.ui.adapter.CoinAdapter
 import com.example.myapplication.ui.viewmodel.CoinDetailViewModel
-import com.example.myapplication.ui.viewmodel.CoinViewModel
+import androidx.navigation.fragment.navArgs
+import com.example.myapplication.data.model.response.BidsAsk
+import com.example.myapplication.data.model.response.OrderResponse
 
 class CoinsFragment : Fragment() {
     private var _binding: FragmentCoinsBinding? = null
     private val binding get() = _binding!!
-    private val coinDetailAdapter: AsksBidsAdapter by lazy { AsksBidsAdapter()}
-    private val coinDetailViewModel : CoinDetailViewModel by viewModels()
+    private val coinDetailViewModel: CoinDetailViewModel by viewModels()
+    private var request: OrderRequest? = null
+    var listAsks: List<BidsAsk> = listOf()
+    val args: CoinsFragmentArgs by navArgs()
+    val nameCoin = args.nameCoin
+    val miniumPrice = args.miniumPrice
+    val maxiumPrice = args.maxiumPrice
 
     companion object {
         val TAG = CoinsFragment::class.java.canonicalName!!
@@ -34,14 +38,41 @@ class CoinsFragment : Fragment() {
         savedInstanceState: Bundle?,
     ): View? {
         _binding = FragmentCoinsBinding.inflate(inflater, container, false)
+        getDataBundle()
         setupObservers()
+        initView()
+        onClick()
         return binding.root
+    }
+
+    private fun onClick() {
+        _binding?.btnAsk?.setOnClickListener {
+            var bundle = Bundle()
+            val request = OrderRequest(true, "")
+            val response = OrderResponse()
+            val action = CoinsFragmentDirections.actionCoinsFragmentToAsksBidsFragment(
+                nameCoin, miniumPrice, maxiumPrice,request, OrderResponse()
+            )
+            findNavController().navigate(action)
+        }
+    }
+
+    private fun initView() {
+        _binding?.tvNameDetailCoin?.text = nameCoin
+        _binding?.tvMiniumPrice?.text = miniumPrice
+        _binding?.tvMaximunPrice?.text = maxiumPrice
+    }
+
+    private fun getDataBundle() {
+        requireArguments().let {
+            request = args.request
+        }
     }
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        coinDetailViewModel.getDetailCoin(request!!)
     }
 
     override fun onDestroyView() {
@@ -49,10 +80,12 @@ class CoinsFragment : Fragment() {
         _binding = null
     }
 
-    private fun setupObservers(){
+    private fun setupObservers() {
         coinDetailViewModel.apply {
-            coinsDetailLiveData.observe(viewLifecycleOwner){ coinsList ->
-                coinDetailAdapter.submitList(coinsList)
+            coinsDetailLiveData.observe(viewLifecycleOwner) {
+                _binding?.tvUpdateAt?.text = it.updateAt
+                _binding?.tvSequenceDetailCoin?.text = it.sequence.toString()
+                listAsks = it.ask!!
             }
         }
     }

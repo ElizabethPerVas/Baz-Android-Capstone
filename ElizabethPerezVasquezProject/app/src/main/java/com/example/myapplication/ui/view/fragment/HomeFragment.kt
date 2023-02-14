@@ -6,8 +6,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.myapplication.R
+import com.example.myapplication.data.model.request.OrderRequest
 import com.example.myapplication.databinding.FragmentHomeBinding
 import com.example.myapplication.ui.adapter.CoinAdapter
 import com.example.myapplication.ui.view.interfaces.ItemButtonCallback
@@ -16,8 +17,12 @@ import com.example.myapplication.ui.viewmodel.CoinViewModel
 class HomeFragment : Fragment(), ItemButtonCallback {
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
-    private val coinAdapter: CoinAdapter by lazy { CoinAdapter(this)}
-    private val coinViewModel : CoinViewModel by viewModels()
+    private val coinAdapter: CoinAdapter by lazy { CoinAdapter(this) }
+    private val coinViewModel: CoinViewModel by viewModels()
+    private var enabled: Boolean = false
+    private var nameCoin: String = ""
+    private var miniumPrice: String = ""
+    private var maxiumPrice: String = ""
 
     companion object {
         val TAG = HomeFragment::class.java.canonicalName!!
@@ -34,23 +39,12 @@ class HomeFragment : Fragment(), ItemButtonCallback {
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         setupObservers()
         initView()
-        initImage()
-        onClickCoin()
         return binding.root
     }
-
-    private fun initImage() {
-
-    }
-
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         coinViewModel.getCoin()
-    }
-
-    private fun onClickCoin() {
-
     }
 
     private fun initView() {
@@ -64,23 +58,43 @@ class HomeFragment : Fragment(), ItemButtonCallback {
         _binding = null
     }
 
-    private fun setupObservers(){
+    private fun setupObservers() {
         coinViewModel.apply {
-            coinsLiveData.observe(viewLifecycleOwner){ coinsList ->
+            coinsLiveData.observe(viewLifecycleOwner) { coinsList ->
                 coinAdapter.submitList(coinsList)
             }
         }
     }
 
     override fun onClickCheckBox(id: String, enabled: Boolean) {
-
+        this.enabled = enabled
     }
 
-    override fun onClickButton(id: String?) {
-        val onClickCoinFragment = CoinsFragment.newInstance()
-        requireActivity().supportFragmentManager.beginTransaction()
-            .replace(R.id.drawer_layout, onClickCoinFragment, CoinsFragment.TAG)
-            .addToBackStack(CoinsFragment.TAG)
-            .commit()
+    override fun onClickButton(
+        id: String?,
+        nameCoin: String?,
+        miniumPrice: String?,
+        maxiumPrice: String?,
+    ) {
+        this.nameCoin = nameCoin.toString()
+        this.miniumPrice = miniumPrice.toString()
+        this.maxiumPrice = maxiumPrice.toString()
+        val request = OrderRequest(enabled, nameCoin)
+        var bundle = Bundle()
+        bundle.putString("NAME_COIN", nameCoin)
+        bundle.putString("MINIUM_PRICE", miniumPrice)
+        bundle.putString("MAXIUM_PRICE", maxiumPrice)
+        bundle.putSerializable("REQUEST", request)
+
+        val action = HomeFragmentDirections.actionHomeFragmentToCoinsFragment(
+            nameCoin.toString(),
+            miniumPrice.toString(),
+            maxiumPrice.toString(),
+            request
+        )
+        findNavController().navigate(action)
     }
 }
+
+
+

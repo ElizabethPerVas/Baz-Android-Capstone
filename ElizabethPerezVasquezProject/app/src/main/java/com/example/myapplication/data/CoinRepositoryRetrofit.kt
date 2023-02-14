@@ -1,7 +1,6 @@
 package com.example.myapplication.data
 
 import com.example.myapplication.data.model.CoinProviderRetrofit
-import com.example.myapplication.data.model.CoinsModelResponse
 import com.example.myapplication.data.model.request.OrderRequest
 import com.example.myapplication.data.model.response.CoinModelResponse
 import com.example.myapplication.data.model.response.OrderResponse
@@ -11,14 +10,14 @@ class CoinRepositoryRetrofit {
 
     private val api = CoinServiceRetrofit()
 
-    suspend fun getAllCoins(): List<CoinModelResponse>{
-        var response : List<CoinModelResponse> = api.getCoins()
+    suspend fun getAllCoins(): List<CoinModelResponse> {
+        var response: List<CoinModelResponse> = api.getCoins()
         CoinProviderRetrofit.coins = response
         return response
     }
 
-    suspend fun getDetailCoins(request: OrderRequest): List<OrderResponse>{
-        var response: List<OrderResponse> = api.getDetail(request)
+    suspend fun getDetailCoins(request: OrderRequest): OrderResponse {
+        var response: OrderResponse = api.getDetail(request)
         CoinProviderRetrofit.detail = response
         return response
     }

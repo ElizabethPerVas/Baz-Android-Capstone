@@ -7,15 +7,17 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.myapplication.R
+import com.example.myapplication.data.model.request.OrderRequest
 import com.example.myapplication.data.model.response.CoinModelResponse
 import com.example.myapplication.databinding.ItemCoinBinding
 import com.example.myapplication.ui.view.interfaces.ItemButtonCallback
 
 
-class CoinAdapter (private val callback: ItemButtonCallback) : ListAdapter<CoinModelResponse, CoinAdapter.ViewHolderCoin>(diffCallback) {
+class CoinAdapter(private val callback: ItemButtonCallback) :
+    ListAdapter<CoinModelResponse, CoinAdapter.ViewHolderCoin>(diffCallback) {
 
-    companion object{
-        val diffCallback = object : DiffUtil.ItemCallback<CoinModelResponse>(){
+    companion object {
+        val diffCallback = object : DiffUtil.ItemCallback<CoinModelResponse>() {
             override fun areItemsTheSame(
                 oldItem: CoinModelResponse,
                 newItem: CoinModelResponse,
@@ -29,40 +31,124 @@ class CoinAdapter (private val callback: ItemButtonCallback) : ListAdapter<CoinM
             ): Boolean {
                 return oldItem == newItem
             }
-
         }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CoinAdapter.ViewHolderCoin {
-            return ViewHolderCoin(ItemCoinBinding.inflate(LayoutInflater.from(parent.context), parent, false))
+        return ViewHolderCoin(
+            ItemCoinBinding.inflate(
+                LayoutInflater.from(parent.context),
+                parent,
+                false
+            )
+        )
     }
 
     override fun onBindViewHolder(holder: ViewHolderCoin, position: Int) {
         holder.bind(getItem(position))
     }
 
-    inner class ViewHolderCoin(val binding: ItemCoinBinding) : RecyclerView.ViewHolder(binding.root) {
+    inner class ViewHolderCoin(val binding: ItemCoinBinding) :
+        RecyclerView.ViewHolder(binding.root) {
         fun bind(information: CoinModelResponse) {
             binding.apply {
                 tvNameCoin.setText(information.nameCoin)
-                tvMiniumAmount.setText("$" +information.miniumPrice?: "$0.0")
-                tvMaximunAmount.setText("$" +information.maxiumPrice?: "$0.0")
-                when(information.nameCoin){
-                    "eth_btc" -> ivCoin.setImageDrawable(ContextCompat.getDrawable(binding.root.context, R.drawable.eth))
-                    "uni_usd" -> ivCoin.setImageDrawable(ContextCompat.getDrawable(binding.root.context, R.drawable.uni))
-                    "xrp_btc" -> ivCoin.setImageDrawable(ContextCompat.getDrawable(binding.root.context, R.drawable.xrp))
-                    "ltc_btc" -> ivCoin.setImageDrawable(ContextCompat.getDrawable(binding.root.context, R.drawable.ltc))
-                    "bch_btc" -> ivCoin.setImageDrawable(ContextCompat.getDrawable(binding.root.context, R.drawable.bch))
-                    "tusd_mxn" -> ivCoin.setImageDrawable(ContextCompat.getDrawable(binding.root.context, R.drawable.tusd))
-                    "bat_btc" -> ivCoin.setImageDrawable(ContextCompat.getDrawable(binding.root.context, R.drawable.bat))
-                    "mana_btc" -> ivCoin.setImageDrawable(ContextCompat.getDrawable(binding.root.context, R.drawable.mana))
-                    "btc_ars" -> ivCoin.setImageDrawable(ContextCompat.getDrawable(binding.root.context, R.drawable.ars))
-                    "dai_ars" -> ivCoin.setImageDrawable(ContextCompat.getDrawable(binding.root.context, R.drawable.dai))
-                    "usd_mxn" -> ivCoin.setImageDrawable(ContextCompat.getDrawable(binding.root.context, R.drawable.usdc))
-                    "aave_usd" -> ivCoin.setImageDrawable(ContextCompat.getDrawable(binding.root.context, R.drawable.aave))
-                    else -> ivCoin.setImageDrawable(ContextCompat.getDrawable(binding.root.context, R.drawable.bitcoin))
+                tvMiniumAmount.setText("$" + information.miniumPrice ?: "$0.0")
+                tvMaximunAmount.setText("$" + information.maxiumPrice ?: "$0.0")
+                when (information.nameCoin) {
+                    "eth_btc" -> ivCoin.setImageDrawable(
+                        ContextCompat.getDrawable(
+                            binding.root.context,
+                            R.drawable.eth
+                        )
+                    )
+                    "uni_usd" -> ivCoin.setImageDrawable(
+                        ContextCompat.getDrawable(
+                            binding.root.context,
+                            R.drawable.uni
+                        )
+                    )
+                    "xrp_btc" -> ivCoin.setImageDrawable(
+                        ContextCompat.getDrawable(
+                            binding.root.context,
+                            R.drawable.xrp
+                        )
+                    )
+                    "ltc_btc" -> ivCoin.setImageDrawable(
+                        ContextCompat.getDrawable(
+                            binding.root.context,
+                            R.drawable.ltc
+                        )
+                    )
+                    "bch_btc" -> ivCoin.setImageDrawable(
+                        ContextCompat.getDrawable(
+                            binding.root.context,
+                            R.drawable.bch
+                        )
+                    )
+                    "tusd_mxn" -> ivCoin.setImageDrawable(
+                        ContextCompat.getDrawable(
+                            binding.root.context,
+                            R.drawable.tusd
+                        )
+                    )
+                    "bat_btc" -> ivCoin.setImageDrawable(
+                        ContextCompat.getDrawable(
+                            binding.root.context,
+                            R.drawable.bat
+                        )
+                    )
+                    "mana_btc" -> ivCoin.setImageDrawable(
+                        ContextCompat.getDrawable(
+                            binding.root.context,
+                            R.drawable.mana
+                        )
+                    )
+                    "btc_ars" -> ivCoin.setImageDrawable(
+                        ContextCompat.getDrawable(
+                            binding.root.context,
+                            R.drawable.ars
+                        )
+                    )
+                    "dai_ars" -> ivCoin.setImageDrawable(
+                        ContextCompat.getDrawable(
+                            binding.root.context,
+                            R.drawable.dai
+                        )
+                    )
+                    "usd_mxn" -> ivCoin.setImageDrawable(
+                        ContextCompat.getDrawable(
+                            binding.root.context,
+                            R.drawable.usdc
+                        )
+                    )
+                    "aave_usd" -> ivCoin.setImageDrawable(
+                        ContextCompat.getDrawable(
+                            binding.root.context,
+                            R.drawable.aave
+                        )
+                    )
+                    else -> ivCoin.setImageDrawable(
+                        ContextCompat.getDrawable(
+                            binding.root.context,
+                            R.drawable.bitcoin
+                        )
+                    )
                 }
-                btnDetail.setOnClickListener { callback.onClickButton(information.nameCoin) }
+                val idCheckBox = "CheckboxAggregate"
+                val idBtn = "BtnShowMore"
+
+                btnDetail.setOnClickListener {
+                    callback.onClickButton(
+                        idBtn, information.nameCoin, information.miniumPrice, information.maxiumPrice
+                    )
+                }
+                cbAggregate.setOnClickListener {
+                    val isChecked = cbAggregate.isChecked
+                    callback.onClickCheckBox(
+                        idCheckBox, isChecked
+                    )
+                }
             }
         }
     }

@@ -35,7 +35,6 @@ class MainActivity2 : AppCompatActivity() {
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
-//        setCoin()
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -48,10 +47,4 @@ class MainActivity2 : AppCompatActivity() {
         return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
     }
 
-//    private fun setCoin() {
-//        val onClickCoinFragment = CoinsFragment.newInstance()
-//        supportFragmentManager.beginTransaction()
-//            .replace(R.id.drawer_layout, onClickCoinFragment, CoinsFragment.TAG)
-//            .addToBackStack(CoinsFragment.TAG).commit()
-//    }
 }

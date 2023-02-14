@@ -1,4 +1,4 @@
-package com.example.myapplication.domain
+package com.example.myapplication.domain.usecase
 
 import com.example.myapplication.data.model.response.CoinModelResponse
 import com.example.myapplication.data.CoinRepositoryRetrofit
