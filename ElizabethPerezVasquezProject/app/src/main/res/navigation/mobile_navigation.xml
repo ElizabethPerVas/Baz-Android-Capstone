@@ -8,7 +8,7 @@
     <fragment
         android:id="@+id/nav_home"
         android:name="com.example.myapplication.ui.view.fragment.HomeFragment"
-        android:label="@string/menu_home"
+        android:label="@string/name_fragment_home"
         tools:layout="@layout/fragment_home">
         <action
             android:id="@+id/action_homeFragment_to_coinsFragment"
@@ -34,7 +34,7 @@
     <fragment
         android:id="@+id/coinsFragment"
         android:name="com.example.myapplication.ui.view.fragment.CoinsFragment"
-        android:label="@string/menu_home"
+        android:label="@string/name_fragment_coins"
         tools:layout="@layout/fragment_coins">
         <action
             android:id="@+id/action_coinsFragment_to_asksBidsFragment"
@@ -57,20 +57,20 @@
                 app:nullable="false" />
 
             <argument
-                android:name="arrayAsk"
-                app:argType="package com.example.myapplication.data.model.response"
+                android:name="responseArrayAskBids"
+                app:argType="com.example.myapplication.data.model.response.OrderResponse"
                 app:nullable="false" />
         </action>
     </fragment>
     <fragment
         android:id="@+id/asksBidsFragment"
         android:name="com.example.myapplication.ui.view.fragment.AsksBidsFragment"
-        android:label="fragment_asks_bids"
+        android:label="@string/name_fragment_asksbids"
         tools:layout="@layout/fragment_asks_bids">
 
         <argument
-            android:name="arrayAskBids"
-            app:argType="package com.example.myapplication.data.model.response"
+            android:name="responseArrayAskBids"
+            app:argType="com.example.myapplication.data.model.response.OrderResponse"
             app:nullable="false" />
     </fragment>
 

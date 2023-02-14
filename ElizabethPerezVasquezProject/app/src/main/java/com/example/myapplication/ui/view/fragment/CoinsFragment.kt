@@ -20,7 +20,10 @@ class CoinsFragment : Fragment() {
     private val coinDetailViewModel: CoinDetailViewModel by viewModels()
     private var request: OrderRequest? = null
     var listAsks: List<BidsAsk> = listOf()
-    val args: CoinsFragmentArgs by navArgs()
+    var listBids: List<BidsAsk> = listOf()
+    var updateAll : String =""
+    var sequence : Long = 0L
+    val args: CoinFragmentArgs by navArgs()
     val nameCoin = args.nameCoin
     val miniumPrice = args.miniumPrice
     val maxiumPrice = args.maxiumPrice
@@ -49,9 +52,25 @@ class CoinsFragment : Fragment() {
         _binding?.btnAsk?.setOnClickListener {
             var bundle = Bundle()
             val request = OrderRequest(true, "")
-            val response = OrderResponse()
+            val response : OrderResponse = OrderResponse(listAsks, listBids,sequence,updateAll)
+            bundle.putSerializable("RESPONSE_ORDER", response)
+            bundle.putString("NAME_COIN", nameCoin)
+            bundle.putBoolean("IS_ASK", true)
             val action = CoinsFragmentDirections.actionCoinsFragmentToAsksBidsFragment(
-                nameCoin, miniumPrice, maxiumPrice,request, OrderResponse()
+                nameCoin, miniumPrice, maxiumPrice,request, response
+            )
+            findNavController().navigate(action)
+        }
+
+        _binding?.btnBids?.setOnClickListener {
+            var bundle = Bundle()
+            val request = OrderRequest(true, "")
+            val response : OrderResponse = OrderResponse(listAsks, listBids,sequence,updateAll)
+            bundle.putSerializable("RESPONSE_ORDER", response)
+            bundle.putString("NAME_COIN", nameCoin)
+            bundle.putBoolean("IS_ASK", false)
+            val action = CoinsFragmentDirections.actionCoinsFragmentToAsksBidsFragment(
+                nameCoin, miniumPrice, maxiumPrice,request, response
             )
             findNavController().navigate(action)
         }
@@ -86,6 +105,9 @@ class CoinsFragment : Fragment() {
                 _binding?.tvUpdateAt?.text = it.updateAt
                 _binding?.tvSequenceDetailCoin?.text = it.sequence.toString()
                 listAsks = it.ask!!
+                listBids = it.bids!!
+                updateAll = it.updateAt!!
+                sequence = it.sequence!!
             }
         }
     }
