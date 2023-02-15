@@ -9,14 +9,15 @@ import com.example.myapplication.data.model.response.OrderResponse
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import retrofit2.Response
+import javax.inject.Inject
 
-class CoinServiceRetrofit {
+class CoinService @Inject constructor(private val api: CoinApiClient){
 
     private val retrofit = RetrofitHelper.getRetrofit()
     suspend fun getCoins(): List<CoinModelResponse> {
         return withContext(Dispatchers.IO) {
             val response: Response<CoinsModelResponse> =
-                retrofit.create(CoinApiClient::class.java).getAllCoins()
+                api.getAllCoins()
             response.body()?.payload ?: emptyList()
         }
     }
@@ -24,7 +25,7 @@ class CoinServiceRetrofit {
     suspend fun getDetail(request: OrderRequest): OrderResponse {
         return withContext(Dispatchers.IO) {
             val response: Response<CoinsDetailModelResponse> =
-                retrofit.create(CoinApiClient::class.java).getOrderCoin(request.nameCoin, request.aggregate)
+                api.getOrderCoin(request.nameCoin, request.aggregate)
             response.body()?.payload ?: OrderResponse(null, null, null, null)
         }
     }

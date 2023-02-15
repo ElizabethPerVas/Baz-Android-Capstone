@@ -6,7 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.myapplication.databinding.FragmentAsksBidsBinding
-import com.example.myapplication.ui.adapter.AsksBidsAdapter
+import com.example.myapplication.ui.view.adapter.AsksBidsAdapter
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.myapplication.data.model.response.OrderResponse

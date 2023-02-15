@@ -1,4 +1,4 @@
-package com.example.myapplication.ui.adapter
+package com.example.myapplication.ui.view.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -26,7 +26,7 @@ class AsksBidsAdapter () : ListAdapter<OrderResponse, AsksBidsAdapter.ViewHolder
             }
         }
     }
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AsksBidsAdapter.ViewHolderCoin {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolderCoin {
             return ViewHolderCoin(ItemAsksBinding.inflate(LayoutInflater.from(parent.context), parent, false))
     }
 

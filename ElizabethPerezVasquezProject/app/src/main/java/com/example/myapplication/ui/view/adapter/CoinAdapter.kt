@@ -1,4 +1,4 @@
-package com.example.myapplication.ui.adapter
+package com.example.myapplication.ui.view.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -34,7 +34,7 @@ class CoinAdapter(private val callback: ItemButtonCallback) :
         }
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CoinAdapter.ViewHolderCoin {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolderCoin {
         return ViewHolderCoin(
             ItemCoinBinding.inflate(
                 LayoutInflater.from(parent.context),

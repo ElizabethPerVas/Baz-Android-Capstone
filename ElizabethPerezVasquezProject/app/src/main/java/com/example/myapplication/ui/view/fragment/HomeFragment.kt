@@ -10,7 +10,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.myapplication.data.model.request.OrderRequest
 import com.example.myapplication.databinding.FragmentHomeBinding
-import com.example.myapplication.ui.adapter.CoinAdapter
+import com.example.myapplication.ui.view.adapter.CoinAdapter
 import com.example.myapplication.ui.view.interfaces.ItemButtonCallback
 import com.example.myapplication.ui.viewmodel.CoinViewModel
 

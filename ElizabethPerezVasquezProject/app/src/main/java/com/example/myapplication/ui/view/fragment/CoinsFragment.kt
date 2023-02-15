@@ -21,8 +21,8 @@ class CoinsFragment : Fragment() {
     private var request: OrderRequest? = null
     var listAsks: List<BidsAsk> = listOf()
     var listBids: List<BidsAsk> = listOf()
-    var updateAll : String =""
-    var sequence : Long = 0L
+    var updateAll: String = ""
+    var sequence: Long = 0L
     val args: CoinFragmentArgs by navArgs()
     val nameCoin = args.nameCoin
     val miniumPrice = args.miniumPrice
@@ -52,12 +52,12 @@ class CoinsFragment : Fragment() {
         _binding?.btnAsk?.setOnClickListener {
             var bundle = Bundle()
             val request = OrderRequest(true, "")
-            val response : OrderResponse = OrderResponse(listAsks, listBids,sequence,updateAll)
+            val response: OrderResponse = OrderResponse(listAsks, listBids, sequence, updateAll)
             bundle.putSerializable("RESPONSE_ORDER", response)
             bundle.putString("NAME_COIN", nameCoin)
             bundle.putBoolean("IS_ASK", true)
             val action = CoinsFragmentDirections.actionCoinsFragmentToAsksBidsFragment(
-                nameCoin, miniumPrice, maxiumPrice,request, response
+                nameCoin, miniumPrice, maxiumPrice, request, response
             )
             findNavController().navigate(action)
         }
@@ -65,12 +65,12 @@ class CoinsFragment : Fragment() {
         _binding?.btnBids?.setOnClickListener {
             var bundle = Bundle()
             val request = OrderRequest(true, "")
-            val response : OrderResponse = OrderResponse(listAsks, listBids,sequence,updateAll)
+            val response: OrderResponse = OrderResponse(listAsks, listBids, sequence, updateAll)
             bundle.putSerializable("RESPONSE_ORDER", response)
             bundle.putString("NAME_COIN", nameCoin)
             bundle.putBoolean("IS_ASK", false)
             val action = CoinsFragmentDirections.actionCoinsFragmentToAsksBidsFragment(
-                nameCoin, miniumPrice, maxiumPrice,request, response
+                nameCoin, miniumPrice, maxiumPrice, request, response
             )
             findNavController().navigate(action)
         }

@@ -1,24 +1,26 @@
 package com.example.myapplication.data
 
-import com.example.myapplication.data.model.CoinProviderRetrofit
+import com.example.myapplication.data.model.CoinProvider
 import com.example.myapplication.data.model.request.OrderRequest
 import com.example.myapplication.data.model.response.CoinModelResponse
 import com.example.myapplication.data.model.response.OrderResponse
-import com.example.myapplication.data.network.CoinServiceRetrofit
+import com.example.myapplication.data.network.CoinService
+import javax.inject.Inject
 
-class CoinRepositoryRetrofit {
-
-    private val api = CoinServiceRetrofit()
+class CoinRepository @Inject constructor(
+    private val api: CoinService,
+    private val coinProvider: CoinProvider
+    ) {
 
     suspend fun getAllCoins(): List<CoinModelResponse> {
         var response: List<CoinModelResponse> = api.getCoins()
-        CoinProviderRetrofit.coins = response
+        coinProvider.coins = response
         return response
     }
 
     suspend fun getDetailCoins(request: OrderRequest): OrderResponse {
         var response: OrderResponse = api.getDetail(request)
-        CoinProviderRetrofit.detail = response
+        coinProvider.detail = response
         return response
     }
 

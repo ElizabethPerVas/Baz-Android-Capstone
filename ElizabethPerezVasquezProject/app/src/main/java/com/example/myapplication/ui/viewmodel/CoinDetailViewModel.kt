@@ -4,14 +4,15 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.myapplication.data.CoinRepositoryRetrofit
+import com.example.myapplication.data.CoinRepository
 import com.example.myapplication.data.model.request.OrderRequest
 import com.example.myapplication.data.model.response.OrderResponse
 import com.example.myapplication.domain.usecase.GetDetailCoinsRetrofitUseCase
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class CoinDetailViewModel(
-    private val repositoryRetrofit: CoinRepositoryRetrofit = CoinRepositoryRetrofit(),
+class CoinDetailViewModel @Inject constructor (
+    private val repositoryRetrofit: CoinRepository = CoinRepository(),
     private val getCoinsDetailRetrofitUseCase: GetDetailCoinsRetrofitUseCase = GetDetailCoinsRetrofitUseCase(
         repositoryRetrofit
     ),

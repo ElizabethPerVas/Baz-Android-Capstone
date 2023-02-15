@@ -4,13 +4,16 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.myapplication.data.CoinRepositoryRetrofit
+import com.example.myapplication.data.CoinRepository
 import com.example.myapplication.data.model.response.CoinModelResponse
 import com.example.myapplication.domain.usecase.GetCoinsRetrofitUseCase
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class CoinViewModel(
-    private val repositoryRetrofit: CoinRepositoryRetrofit = CoinRepositoryRetrofit(),
+@HiltViewModel
+class CoinViewModel @Inject constructor (
+    private val repositoryRetrofit: CoinRepository = CoinRepository(),
     private val getCoinsRetrofitUseCase: GetCoinsRetrofitUseCase = GetCoinsRetrofitUseCase(
         repositoryRetrofit
     ),
