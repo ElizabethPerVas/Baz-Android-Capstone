@@ -11,7 +11,8 @@ import com.example.myapplication.data.model.request.OrderRequest
 import com.example.myapplication.databinding.FragmentCoinsBinding
 import com.example.myapplication.ui.viewmodel.CoinDetailViewModel
 import androidx.navigation.fragment.navArgs
-import com.example.myapplication.data.model.response.BidsAsk
+import com.example.myapplication.data.database.entities.CoinDetailAskEntity
+import com.example.myapplication.data.database.entities.CoinDetailBidsEntity
 import com.example.myapplication.data.model.response.OrderResponse
 
 class CoinsFragment : Fragment() {
@@ -19,11 +20,11 @@ class CoinsFragment : Fragment() {
     private val binding get() = _binding!!
     private val coinDetailViewModel: CoinDetailViewModel by viewModels()
     private var request: OrderRequest? = null
-    var listAsks: List<BidsAsk> = listOf()
-    var listBids: List<BidsAsk> = listOf()
+    var listAsks: List<CoinDetailAskEntity> = listOf()
+    var listBids: List<CoinDetailBidsEntity> = listOf()
     var updateAll: String = ""
     var sequence: Long = 0L
-    val args: CoinFragmentArgs by navArgs()
+    val args: CoinsFragmentArgs by navArgs()
     val nameCoin = args.nameCoin
     val miniumPrice = args.miniumPrice
     val maxiumPrice = args.maxiumPrice
@@ -102,11 +103,11 @@ class CoinsFragment : Fragment() {
     private fun setupObservers() {
         coinDetailViewModel.apply {
             coinsDetailLiveData.observe(viewLifecycleOwner) {
-                _binding?.tvUpdateAt?.text = it.updateAt
+                _binding?.tvUpdateAt?.text = it.update_at
                 _binding?.tvSequenceDetailCoin?.text = it.sequence.toString()
-                listAsks = it.ask!!
-                listBids = it.bids!!
-                updateAll = it.updateAt!!
+                listAsks = it.ask
+                listBids = it.bids
+                updateAll = it.update_at
                 sequence = it.sequence!!
             }
         }

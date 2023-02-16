@@ -7,27 +7,26 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.myapplication.R
-import com.example.myapplication.data.model.request.OrderRequest
-import com.example.myapplication.data.model.response.CoinModelResponse
+import com.example.myapplication.data.model.Coin
 import com.example.myapplication.databinding.ItemCoinBinding
 import com.example.myapplication.ui.view.interfaces.ItemButtonCallback
 
 
 class CoinAdapter(private val callback: ItemButtonCallback) :
-    ListAdapter<CoinModelResponse, CoinAdapter.ViewHolderCoin>(diffCallback) {
+    ListAdapter<Coin, CoinAdapter.ViewHolderCoin>(diffCallback) {
 
     companion object {
-        val diffCallback = object : DiffUtil.ItemCallback<CoinModelResponse>() {
+        val diffCallback = object : DiffUtil.ItemCallback<Coin>() {
             override fun areItemsTheSame(
-                oldItem: CoinModelResponse,
-                newItem: CoinModelResponse,
+                oldItem: Coin,
+                newItem: Coin,
             ): Boolean {
                 return oldItem.nameCoin == newItem.nameCoin
             }
 
             override fun areContentsTheSame(
-                oldItem: CoinModelResponse,
-                newItem: CoinModelResponse,
+                oldItem: Coin,
+                newItem: Coin,
             ): Boolean {
                 return oldItem == newItem
             }
@@ -50,7 +49,7 @@ class CoinAdapter(private val callback: ItemButtonCallback) :
 
     inner class ViewHolderCoin(val binding: ItemCoinBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(information: CoinModelResponse) {
+        fun bind(information: Coin) {
             binding.apply {
                 tvNameCoin.setText(information.nameCoin)
                 tvMiniumAmount.setText("$" + information.miniumPrice ?: "$0.0")

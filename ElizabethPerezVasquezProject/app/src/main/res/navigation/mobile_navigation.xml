@@ -58,7 +58,7 @@
 
             <argument
                 android:name="responseArrayAskBids"
-                app:argType="com.example.myapplication.data.model.response.OrderResponse"
+                app:argType="com.example.myapplication.data.database.entities.CoinDetailEntity"
                 app:nullable="false" />
         </action>
     </fragment>
@@ -70,7 +70,7 @@
 
         <argument
             android:name="responseArrayAskBids"
-            app:argType="com.example.myapplication.data.model.response.OrderResponse"
+            app:argType="com.example.myapplication.data.database.entities.CoinDetailEntity"
             app:nullable="false" />
     </fragment>
 

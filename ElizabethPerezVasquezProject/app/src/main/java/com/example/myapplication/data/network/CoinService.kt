@@ -13,7 +13,6 @@ import javax.inject.Inject
 
 class CoinService @Inject constructor(private val api: CoinApiClient){
 
-    private val retrofit = RetrofitHelper.getRetrofit()
     suspend fun getCoins(): List<CoinModelResponse> {
         return withContext(Dispatchers.IO) {
             val response: Response<CoinsModelResponse> =
@@ -26,7 +25,7 @@ class CoinService @Inject constructor(private val api: CoinApiClient){
         return withContext(Dispatchers.IO) {
             val response: Response<CoinsDetailModelResponse> =
                 api.getOrderCoin(request.nameCoin, request.aggregate)
-            response.body()?.payload ?: OrderResponse(null, null, null, null)
+            response.body()?.payload ?: OrderResponse(listOf(), listOf(),0L,"")
         }
     }
 }
