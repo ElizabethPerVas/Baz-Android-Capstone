@@ -7,8 +7,8 @@ data class CoinDetailAsk(
     val book: String,
     val amount: String,
     val price: String,
-    val oid: String
-    )
+    val oid: String,
+)
 
 fun Ask.toDomain() = CoinDetailAsk(
     book,
@@ -28,5 +28,5 @@ fun CoinDetailAsk.toDatabase() = CoinDetailAskEntity(
     book = book,
     amount = amount,
     price = price,
-    oid= oid
+    oid = oid
 )

@@ -8,9 +8,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.myapplication.data.model.response.OrderResponse
 import com.example.myapplication.databinding.ItemAsksBinding
 
-class AsksBidsAdapter () : ListAdapter<OrderResponse, AsksBidsAdapter.ViewHolderCoin>(diffCallback) {
-    companion object{
-        val diffCallback = object : DiffUtil.ItemCallback<OrderResponse>(){
+class AsksBidsAdapter() : ListAdapter<OrderResponse, AsksBidsAdapter.ViewHolderCoin>(diffCallback) {
+    companion object {
+        val diffCallback = object : DiffUtil.ItemCallback<OrderResponse>() {
             override fun areItemsTheSame(
                 oldItem: OrderResponse,
                 newItem: OrderResponse,
@@ -26,15 +26,23 @@ class AsksBidsAdapter () : ListAdapter<OrderResponse, AsksBidsAdapter.ViewHolder
             }
         }
     }
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolderCoin {
-            return ViewHolderCoin(ItemAsksBinding.inflate(LayoutInflater.from(parent.context), parent, false))
+        return ViewHolderCoin(
+            ItemAsksBinding.inflate(
+                LayoutInflater.from(parent.context),
+                parent,
+                false
+            )
+        )
     }
 
     override fun onBindViewHolder(holder: ViewHolderCoin, position: Int) {
         holder.bind(getItem(position))
     }
 
-    inner class ViewHolderCoin(val binding: ItemAsksBinding) : RecyclerView.ViewHolder(binding.root) {
+    inner class ViewHolderCoin(val binding: ItemAsksBinding) :
+        RecyclerView.ViewHolder(binding.root) {
         fun bind(information: OrderResponse) {
             binding.apply {
                 if (!information.ask.isNullOrEmpty()) {

@@ -11,7 +11,7 @@ import kotlinx.coroutines.withContext
 import retrofit2.Response
 import javax.inject.Inject
 
-class CoinService @Inject constructor(private val api: CoinApiClient){
+class CoinService @Inject constructor(private val api: CoinApiClient) {
 
     suspend fun getCoins(): List<CoinModelResponse> {
         return withContext(Dispatchers.IO) {
@@ -25,7 +25,7 @@ class CoinService @Inject constructor(private val api: CoinApiClient){
         return withContext(Dispatchers.IO) {
             val response: Response<CoinsDetailModelResponse> =
                 api.getOrderCoin(request.nameCoin, request.aggregate)
-            response.body()?.payload ?: OrderResponse(listOf(), listOf(),0L,"")
+            response.body()?.payload ?: OrderResponse(listOf(), listOf(), 0L, "")
         }
     }
 }

@@ -16,7 +16,7 @@ data class CoinModelResponse(
     @SerializedName("minimum_value")
     var miniumValue: String? = null,
     @SerializedName("maximum_value")
-    var maximunValue: String? = null
-    ){
+    var maximunValue: String? = null,
+) {
 
 }

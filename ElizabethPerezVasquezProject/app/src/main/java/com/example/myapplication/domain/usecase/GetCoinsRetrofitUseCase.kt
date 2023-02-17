@@ -5,16 +5,17 @@ import com.example.myapplication.data.database.entities.toDatabase
 import com.example.myapplication.data.model.Coin
 import javax.inject.Inject
 
-class GetCoinsRetrofitUseCase @Inject constructor (
-    private val repository : CoinRepository
+class GetCoinsRetrofitUseCase @Inject constructor(
+    private val repository: CoinRepository,
 ) {
-    suspend operator fun invoke() : List<Coin>{
-        repository.clearCoin()
+    suspend operator fun invoke(): List<Coin> {
         val coins = repository.getAllCoinsFromApi()
-        return if (coins.isNotEmpty()){
+
+        return if (coins.isNotEmpty()) {
+            repository.clearCoin()
             repository.insertCoins(coins.map { it.toDatabase() })
             coins
-        }else{
+        } else {
             repository.getAllCoinsFromDatabase()
         }
     }

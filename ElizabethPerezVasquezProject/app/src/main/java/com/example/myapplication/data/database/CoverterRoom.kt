@@ -11,11 +11,13 @@ class ConverterRoom {
     fun listToJsonAsk(value: List<CoinDetailAskEntity>) = Gson().toJson(value)
 
     @TypeConverter
-    fun jsonToListAsk(value: String) = Gson().fromJson(value, Array<CoinDetailAskEntity>::class.java).toList()
+    fun jsonToListAsk(value: String) =
+        Gson().fromJson(value, Array<CoinDetailAskEntity>::class.java).toList()
 
     @TypeConverter
     fun listToJsonBids(value: List<CoinDetailBidsEntity>) = Gson().toJson(value)
 
     @TypeConverter
-    fun jsonToListBids(value: String) = Gson().fromJson(value, Array<CoinDetailBidsEntity>::class.java).toList()
+    fun jsonToListBids(value: String) =
+        Gson().fromJson(value, Array<CoinDetailBidsEntity>::class.java).toList()
 }

@@ -139,7 +139,10 @@ class CoinAdapter(private val callback: ItemButtonCallback) :
 
                 btnDetail.setOnClickListener {
                     callback.onClickButton(
-                        idBtn, information.nameCoin, information.miniumPrice, information.maxiumPrice
+                        idBtn,
+                        information.nameCoin,
+                        information.miniumPrice,
+                        information.maxiumPrice
                     )
                 }
                 cbAggregate.setOnClickListener {

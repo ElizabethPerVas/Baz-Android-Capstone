@@ -87,9 +87,9 @@ class HomeFragment : Fragment(), ItemButtonCallback {
         bundle.putSerializable("REQUEST", request)
 
         val action = HomeFragmentDirections.actionHomeFragmentToCoinsFragment(
-            nameCoin.toString(),
-            miniumPrice.toString(),
-            maxiumPrice.toString(),
+            nameCoin = nameCoin.toString(),
+            miniumPrice = miniumPrice.toString(),
+            maxiumPrice = maxiumPrice.toString(),
             request
         )
         findNavController().navigate(action)

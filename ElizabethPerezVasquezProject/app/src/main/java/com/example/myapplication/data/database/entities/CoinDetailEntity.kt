@@ -10,6 +10,7 @@ import com.example.myapplication.data.model.response.Ask
 import com.example.myapplication.data.model.response.Bids
 import com.example.myapplication.data.model.response.OrderResponse
 import dagger.multibindings.ClassKey
+import java.io.Serializable
 
 @Entity(tableName = "coin_detail_table")
 data class CoinDetailEntity(
@@ -18,8 +19,8 @@ data class CoinDetailEntity(
     @ColumnInfo(name = "ask") val ask: List<CoinDetailAskEntity>,
     @ColumnInfo(name = "bids") val bids: List<CoinDetailBidsEntity>,
     @ColumnInfo(name = "sequence") val sequence: Long,
-    @ColumnInfo(name = "update_at") val update_at: String
-)
+    @ColumnInfo(name = "update_at") val update_at: String,
+) : Serializable
 
 fun CoinDetail.toDatabase() = CoinDetailEntity(
     ask = ask,

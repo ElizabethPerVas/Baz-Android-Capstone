@@ -25,7 +25,7 @@ object NetworkModule {
 
     @Singleton
     @Provides
-    fun provideCoinApiClient(retrofit: Retrofit): CoinApiClient{
+    fun provideCoinApiClient(retrofit: Retrofit): CoinApiClient {
         return retrofit.create(CoinApiClient::class.java)
     }
 }

@@ -8,8 +8,8 @@ data class CoinDetailBids(
     val book: String,
     val amount: String,
     val price: String,
-    val oid: String
-    )
+    val oid: String,
+)
 
 fun Bids.toDomain() = CoinDetailBids(
     book,

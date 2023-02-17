@@ -13,6 +13,7 @@ import com.example.myapplication.ui.viewmodel.CoinDetailViewModel
 import androidx.navigation.fragment.navArgs
 import com.example.myapplication.data.database.entities.CoinDetailAskEntity
 import com.example.myapplication.data.database.entities.CoinDetailBidsEntity
+import com.example.myapplication.data.database.entities.CoinDetailEntity
 import com.example.myapplication.data.model.response.OrderResponse
 
 class CoinsFragment : Fragment() {
@@ -25,9 +26,7 @@ class CoinsFragment : Fragment() {
     var updateAll: String = ""
     var sequence: Long = 0L
     val args: CoinsFragmentArgs by navArgs()
-    val nameCoin = args.nameCoin
-    val miniumPrice = args.miniumPrice
-    val maxiumPrice = args.maxiumPrice
+
 
     companion object {
         val TAG = CoinsFragment::class.java.canonicalName!!
@@ -52,35 +51,41 @@ class CoinsFragment : Fragment() {
     private fun onClick() {
         _binding?.btnAsk?.setOnClickListener {
             var bundle = Bundle()
-            val request = OrderRequest(true, "")
-            val response: OrderResponse = OrderResponse(listAsks, listBids, sequence, updateAll)
+            val response: CoinDetailEntity = CoinDetailEntity(
+                ask = listAsks,
+                bids = listBids,
+                sequence = sequence,
+                update_at = updateAll
+            )
             bundle.putSerializable("RESPONSE_ORDER", response)
-            bundle.putString("NAME_COIN", nameCoin)
             bundle.putBoolean("IS_ASK", true)
             val action = CoinsFragmentDirections.actionCoinsFragmentToAsksBidsFragment(
-                nameCoin, miniumPrice, maxiumPrice, request, response
+                response
             )
             findNavController().navigate(action)
         }
 
         _binding?.btnBids?.setOnClickListener {
             var bundle = Bundle()
-            val request = OrderRequest(true, "")
-            val response: OrderResponse = OrderResponse(listAsks, listBids, sequence, updateAll)
+            val response: CoinDetailEntity = CoinDetailEntity(
+                ask = listAsks,
+                bids = listBids,
+                sequence = sequence,
+                update_at = updateAll
+            )
             bundle.putSerializable("RESPONSE_ORDER", response)
-            bundle.putString("NAME_COIN", nameCoin)
             bundle.putBoolean("IS_ASK", false)
             val action = CoinsFragmentDirections.actionCoinsFragmentToAsksBidsFragment(
-                nameCoin, miniumPrice, maxiumPrice, request, response
+                response
             )
             findNavController().navigate(action)
         }
     }
 
     private fun initView() {
-        _binding?.tvNameDetailCoin?.text = nameCoin
-        _binding?.tvMiniumPrice?.text = miniumPrice
-        _binding?.tvMaximunPrice?.text = maxiumPrice
+        _binding?.tvNameDetailCoin?.text = args.nameCoin
+        _binding?.tvMiniumPrice?.text = args.miniumPrice
+        _binding?.tvMaximunPrice?.text = args.maxiumPrice
     }
 
     private fun getDataBundle() {

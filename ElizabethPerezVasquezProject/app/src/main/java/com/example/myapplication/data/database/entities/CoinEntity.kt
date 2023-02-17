@@ -15,7 +15,7 @@ data class CoinEntity(
     @ColumnInfo(name = "minimum_price") val miniumPrice: String,
     @ColumnInfo(name = "maximum_price") val maxiumPrice: String,
     @ColumnInfo(name = "minimum_value") val miniumValue: String,
-    @ColumnInfo(name = "maximum_value") val maximunValue: String
+    @ColumnInfo(name = "maximum_value") val maximunValue: String,
 )
 
 fun Coin.toDatabase() = CoinEntity(
@@ -26,4 +26,4 @@ fun Coin.toDatabase() = CoinEntity(
     maxiumPrice = maxiumPrice,
     miniumValue = miniumValue,
     maximunValue = maximunValue
-    )
+)

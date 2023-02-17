@@ -13,7 +13,7 @@ data class CoinDetail(
     val bids: List<CoinDetailBidsEntity>,
     val sequence: Long,
     val update_at: String,
-    )
+)
 
 fun OrderResponse.toDomain() = CoinDetail(
     ask = ask,

@@ -16,8 +16,8 @@ import javax.inject.Inject
 class CoinRepository @Inject constructor(
     private val api: CoinService,
     private val coinDao: CoinDao,
-    private val coinDetailDao: CoinDetailDao
-    ) {
+    private val coinDetailDao: CoinDetailDao,
+) {
 
     suspend fun getAllCoinsFromApi(): List<Coin> {
         val response: List<CoinModelResponse> = api.getCoins()
@@ -26,18 +26,18 @@ class CoinRepository @Inject constructor(
         }
     }
 
-    suspend fun getAllCoinsFromDatabase(): List<Coin>{
-        val response : List<CoinEntity> = coinDao.getAllCoins()
+    suspend fun getAllCoinsFromDatabase(): List<Coin> {
+        val response: List<CoinEntity> = coinDao.getAllCoins()
         return response.map {
             it.toDomain()
         }
     }
 
-    suspend fun insertCoins(coins: List<CoinEntity>){
+    suspend fun insertCoins(coins: List<CoinEntity>) {
         coinDao.insertAll(coins)
     }
 
-    suspend fun clearCoin(){
+    suspend fun clearCoin() {
         coinDao.deleteAllCoins()
     }
 
@@ -46,16 +46,16 @@ class CoinRepository @Inject constructor(
         return response
     }
 
-    suspend fun getDetailCoinsFromDatabase(request: OrderRequest) : CoinDetail{
-        val response : CoinDetailEntity = coinDetailDao.getAllCoins()
+    suspend fun getDetailCoinsFromDatabase(request: OrderRequest): CoinDetail {
+        val response: CoinDetailEntity = coinDetailDao.getAllCoins()
         return response.toDomain()
     }
 
-    suspend fun insertDetailCoins(coinsDetail: CoinDetailEntity){
+    suspend fun insertDetailCoins(coinsDetail: CoinDetailEntity) {
         coinDetailDao.insertAll(coinsDetail)
     }
 
-    suspend fun clearDetailCoins(){
+    suspend fun clearDetailCoins() {
         coinDetailDao.deleteAllCoins()
     }
 

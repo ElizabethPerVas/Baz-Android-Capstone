@@ -13,7 +13,7 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class CoinViewModel @Inject constructor (
+class CoinViewModel @Inject constructor(
     private val repositoryRetrofit: CoinRepository,
     private val getCoinsRetrofitUseCase: GetCoinsRetrofitUseCase = GetCoinsRetrofitUseCase(
         repositoryRetrofit
