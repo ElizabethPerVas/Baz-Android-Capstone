@@ -6,16 +6,27 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
-import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.navigation.fragment.findNavController
+import com.example.myapplication.data.model.request.OrderRequest
 import com.example.myapplication.databinding.FragmentCoinsBinding
-import com.example.myapplication.ui.adapter.CoinAdapter
-import com.example.myapplication.ui.viewmodel.CoinViewModel
+import com.example.myapplication.ui.viewmodel.CoinDetailViewModel
+import androidx.navigation.fragment.navArgs
+import com.example.myapplication.data.database.entities.CoinDetailAskEntity
+import com.example.myapplication.data.database.entities.CoinDetailBidsEntity
+import com.example.myapplication.data.database.entities.CoinDetailEntity
+import com.example.myapplication.data.model.response.OrderResponse
 
 class CoinsFragment : Fragment() {
     private var _binding: FragmentCoinsBinding? = null
     private val binding get() = _binding!!
-    private val coinAdapter: CoinAdapter by lazy { CoinAdapter()}
-    private val coinViewModel : CoinViewModel by viewModels()
+    private val coinDetailViewModel: CoinDetailViewModel by viewModels()
+    private var request: OrderRequest? = null
+    var listAsks: List<CoinDetailAskEntity> = listOf()
+    var listBids: List<CoinDetailBidsEntity> = listOf()
+    var updateAll: String = ""
+    var sequence: Long = 0L
+    val args: CoinsFragmentArgs by navArgs()
+
 
     companion object {
         val TAG = CoinsFragment::class.java.canonicalName!!
@@ -30,27 +41,63 @@ class CoinsFragment : Fragment() {
         savedInstanceState: Bundle?,
     ): View? {
         _binding = FragmentCoinsBinding.inflate(inflater, container, false)
+        getDataBundle()
         setupObservers()
         initView()
-        onClickCoin()
+        onClick()
         return binding.root
+    }
+
+    private fun onClick() {
+        _binding?.btnAsk?.setOnClickListener {
+            var bundle = Bundle()
+            val response: CoinDetailEntity = CoinDetailEntity(
+                ask = listAsks,
+                bids = listBids,
+                sequence = sequence,
+                update_at = updateAll
+            )
+            bundle.putSerializable("RESPONSE_ORDER", response)
+            bundle.putBoolean("IS_ASK", true)
+            val action = CoinsFragmentDirections.actionCoinsFragmentToAsksBidsFragment(
+                response
+            )
+            findNavController().navigate(action)
+        }
+
+        _binding?.btnBids?.setOnClickListener {
+            var bundle = Bundle()
+            val response: CoinDetailEntity = CoinDetailEntity(
+                ask = listAsks,
+                bids = listBids,
+                sequence = sequence,
+                update_at = updateAll
+            )
+            bundle.putSerializable("RESPONSE_ORDER", response)
+            bundle.putBoolean("IS_ASK", false)
+            val action = CoinsFragmentDirections.actionCoinsFragmentToAsksBidsFragment(
+                response
+            )
+            findNavController().navigate(action)
+        }
+    }
+
+    private fun initView() {
+        _binding?.tvNameDetailCoin?.text = args.nameCoin
+        _binding?.tvMiniumPrice?.text = args.miniumPrice
+        _binding?.tvMaximunPrice?.text = args.maxiumPrice
+    }
+
+    private fun getDataBundle() {
+        requireArguments().let {
+            request = args.request
+        }
     }
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        coinViewModel.getCoin()
-    }
-
-    private fun onClickCoin() {
-        _binding!!.rvCoins.setOnClickListener {
-        }
-    }
-
-    private fun initView() {
-        _binding!!.rvCoins.setHasFixedSize(false)
-        _binding!!.rvCoins.layoutManager = LinearLayoutManager(context)
-        _binding!!.rvCoins.adapter = coinAdapter
+        coinDetailViewModel.getDetailCoin(request!!)
     }
 
     override fun onDestroyView() {
@@ -58,10 +105,15 @@ class CoinsFragment : Fragment() {
         _binding = null
     }
 
-    private fun setupObservers(){
-        coinViewModel.apply {
-            coinsLiveData.observe(viewLifecycleOwner){ coinsList ->
-                coinAdapter.submitList(coinsList)
+    private fun setupObservers() {
+        coinDetailViewModel.apply {
+            coinsDetailLiveData.observe(viewLifecycleOwner) {
+                _binding?.tvUpdateAt?.text = it.update_at
+                _binding?.tvSequenceDetailCoin?.text = it.sequence.toString()
+                listAsks = it.ask
+                listBids = it.bids
+                updateAll = it.update_at
+                sequence = it.sequence!!
             }
         }
     }

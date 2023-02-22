@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/nav_home">
+
+    <fragment
+        android:id="@+id/nav_home"
+        android:name="com.example.myapplication.ui.view.fragment.HomeFragment"
+        android:label="@string/name_fragment_home"
+        tools:layout="@layout/fragment_home">
+        <action
+            android:id="@+id/action_homeFragment_to_coinsFragment"
+            app:destination="@+id/coinsFragment"/>
+    </fragment>
+    <fragment
+        android:id="@+id/coinsFragment"
+        android:name="com.example.myapplication.ui.view.fragment.CoinsFragment"
+        android:label="@string/name_fragment_coins"
+        tools:layout="@layout/fragment_coins">
+        <argument
+            android:name="nameCoin"
+            app:argType="string"
+            app:nullable="false" />
+        <argument
+            android:name="miniumPrice"
+            app:argType="string"
+            app:nullable="false" />
+        <argument
+            android:name="maxiumPrice"
+            app:argType="string"
+            app:nullable="false" />
+        <argument
+            android:name="request"
+            app:argType="com.example.myapplication.data.model.request.OrderRequest"
+            app:nullable="false" />
+        <action
+            android:id="@+id/action_coinsFragment_to_asksBidsFragment"
+            app:destination="@id/asksBidsFragment"/>
+
+    </fragment>
+    <fragment
+        android:id="@+id/asksBidsFragment"
+        android:name="com.example.myapplication.ui.view.fragment.AsksBidsFragment"
+        android:label="@string/name_fragment_asksbids"
+        tools:layout="@layout/fragment_asks_bids">
+
+        <argument
+            android:name="responseArrayAskBids"
+            app:argType="com.example.myapplication.data.database.entities.CoinDetailEntity"
+            app:nullable="false" />
+    </fragment>
+
+</navigation>

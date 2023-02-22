@@ -9,7 +9,7 @@ import com.example.myapplication.data.database.entities.CoinEntity
 @Dao
 interface CoinDao {
 
-    @Query("SELECT * FROM coin_table ORDER BY nameCoin DESC")
+    @Query("SELECT * FROM coin_table ORDER BY book DESC")
     suspend fun getAllCoins(): List<CoinEntity>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)

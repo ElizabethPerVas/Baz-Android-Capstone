@@ -1,11 +1,39 @@
 <resources>
-    <string name="app_name">My Application</string>
-    <string name="name_coin">Name Coin</string>
+    <string name="app_name">Coins</string>
+    <string name="name_coin">Name Coin: </string>
     <string name="minimum_amount">Minium Amount</string>
-    <string name="maximun_amoun">Maximun Amount Coin</string>
-    <string name="minimum_price">Minium Price</string>
-    <string name="maximum_price">Maximun Price</string>
-    <string name="minimum_value">Minium Value</string>
-    <string name="maximum_value">Maximun Value</string>
+    <string name="maximun_amount">Maximun Amount Coin:</string>
+    <string name="minimum_price">Minium Price:</string>
+    <string name="maximum_price">Maximun Price: </string>
+    <string name="minimum_value">Minium Value: </string>
+    <string name="maximum_value">Maximun Value: </string>
+    <string name="title_activity_main2">MainActivity2</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Elizabeth Pérez Vásquez</string>
+    <string name="nav_header_subtitle">Elizabeth.perez@bancoazteca.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+    <string name="aggregate_order">Aggregate orders by price.</string>
+    <string name="detail_coin">Show More</string>
+    <string name="sequence_coin">Sequence: </string>
+    <string name="update_At">Update At: </string>
+    <string name="menu_home">Coins</string>
+    <string name="menu_gallery">Gallery</string>
+    <string name="menu_slideshow">Slideshow</string>
+    <string name="title_detail">Titulo: </string>
+    <string name="price">Price: </string>
+    <string name="amount">Amount: </string>
+    <string name="order_id">Order ID: </string>
+    <string name="btn_asks">Show Asks </string>
+    <string name="btn_bids">Show Bids</string>
+    <string name="name_fragment_home">HomeFragment</string>
+    <string name="name_fragment_coins">CoinsFragment</string>
+    <string name="name_fragment_asksbids">AsksBidsFragment</string>
+
+
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>
