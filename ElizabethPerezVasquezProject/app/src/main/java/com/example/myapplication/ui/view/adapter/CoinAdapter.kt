@@ -52,88 +52,31 @@ class CoinAdapter(private val callback: ItemButtonCallback) :
         fun bind(information: Coin) {
             binding.apply {
                 tvNameCoin.setText(information.nameCoin)
-                tvMiniumAmount.setText("$" + information.miniumPrice ?: "$0.0")
-                tvMaximunAmount.setText("$" + information.maxiumPrice ?: "$0.0")
-                when (information.nameCoin) {
-                    "eth_btc" -> ivCoin.setImageDrawable(
-                        ContextCompat.getDrawable(
-                            binding.root.context,
-                            R.drawable.eth
-                        )
-                    )
-                    "uni_usd" -> ivCoin.setImageDrawable(
-                        ContextCompat.getDrawable(
-                            binding.root.context,
-                            R.drawable.uni
-                        )
-                    )
-                    "xrp_btc" -> ivCoin.setImageDrawable(
-                        ContextCompat.getDrawable(
-                            binding.root.context,
-                            R.drawable.xrp
-                        )
-                    )
-                    "ltc_btc" -> ivCoin.setImageDrawable(
-                        ContextCompat.getDrawable(
-                            binding.root.context,
-                            R.drawable.ltc
-                        )
-                    )
-                    "bch_btc" -> ivCoin.setImageDrawable(
-                        ContextCompat.getDrawable(
-                            binding.root.context,
-                            R.drawable.bch
-                        )
-                    )
-                    "tusd_mxn" -> ivCoin.setImageDrawable(
-                        ContextCompat.getDrawable(
-                            binding.root.context,
-                            R.drawable.tusd
-                        )
-                    )
-                    "bat_btc" -> ivCoin.setImageDrawable(
-                        ContextCompat.getDrawable(
-                            binding.root.context,
-                            R.drawable.bat
-                        )
-                    )
-                    "mana_btc" -> ivCoin.setImageDrawable(
-                        ContextCompat.getDrawable(
-                            binding.root.context,
-                            R.drawable.mana
-                        )
-                    )
-                    "btc_ars" -> ivCoin.setImageDrawable(
-                        ContextCompat.getDrawable(
-                            binding.root.context,
-                            R.drawable.ars
-                        )
-                    )
-                    "dai_ars" -> ivCoin.setImageDrawable(
-                        ContextCompat.getDrawable(
-                            binding.root.context,
-                            R.drawable.dai
-                        )
-                    )
-                    "usd_mxn" -> ivCoin.setImageDrawable(
-                        ContextCompat.getDrawable(
-                            binding.root.context,
-                            R.drawable.usdc
-                        )
-                    )
-                    "aave_usd" -> ivCoin.setImageDrawable(
-                        ContextCompat.getDrawable(
-                            binding.root.context,
-                            R.drawable.aave
-                        )
-                    )
-                    else -> ivCoin.setImageDrawable(
-                        ContextCompat.getDrawable(
-                            binding.root.context,
-                            R.drawable.bitcoin
-                        )
-                    )
+                tvMiniumAmount.setText("$" + information.miniumPrice)
+                tvMaximunAmount.setText("$" + information.maxiumPrice)
+                val icon = when (information.nameCoin) {
+                    "eth_btc" ->  R.drawable.eth
+                    "uni_usd" -> R.drawable.uni
+                    "xrp_btc" -> R.drawable.xrp
+                    "ltc_btc" -> R.drawable.ltc
+                    "bch_btc" -> R.drawable.bch
+                    "tusd_mxn" -> R.drawable.tusd
+                    "bat_btc" -> R.drawable.bat
+                    "mana_btc" -> R.drawable.mana
+                    "btc_ars" -> R.drawable.ars
+                    "dai_ars" -> R.drawable.dai
+                    "usd_mxn" -> R.drawable.usdc
+                    "aave_usd" -> R.drawable.aave
+                    else -> R.drawable.bitcoin
                 }
+                ivCoin.setImageDrawable(
+                    ContextCompat.getDrawable(
+                        binding.root.context,
+                        icon
+                    )
+                )
+
+                ivCoin.setImageDrawable(ContextCompat.getDrawable(binding.root.context, icon))
                 val idCheckBox = "CheckboxAggregate"
                 val idBtn = "BtnShowMore"
 

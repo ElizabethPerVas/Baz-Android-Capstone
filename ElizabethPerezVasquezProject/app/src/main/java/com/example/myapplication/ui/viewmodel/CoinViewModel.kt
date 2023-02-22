@@ -14,10 +14,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class CoinViewModel @Inject constructor(
-    private val repositoryRetrofit: CoinRepository,
-    private val getCoinsRetrofitUseCase: GetCoinsRetrofitUseCase = GetCoinsRetrofitUseCase(
-        repositoryRetrofit
-    ),
+    private val getCoinsRetrofitUseCase: GetCoinsRetrofitUseCase
 ) : ViewModel() {
     private val _coinsLiveData = MutableLiveData<List<Coin>>()
     val coinsLiveData: LiveData<List<Coin>> = _coinsLiveData

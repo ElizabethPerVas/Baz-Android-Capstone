@@ -101,6 +101,12 @@ dependencies {
     implementation("androidx.cardview:cardview:1.0.0")
 
     /**************************************/
+    /*              Okhttp             */
+    /**************************************/
+    implementation 'com.squareup.okhttp3:okhttp:4.9.1'
+    implementation 'com.squareup.okhttp3:logging-interceptor:4.9.1'
+
+    /**************************************/
     /*             Unit Test              */
     /**************************************/
 
@@ -113,7 +119,6 @@ dependencies {
     kaptAndroidTest 'com.google.dagger:hilt-compiler:2.45'
     testImplementation 'com.google.dagger:hilt-android-testing:2.45'
     kaptTest 'com.google.dagger:hilt-compiler:2.45'
-
 
 
 }

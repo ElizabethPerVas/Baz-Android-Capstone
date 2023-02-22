@@ -12,10 +12,7 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 class CoinDetailViewModel @Inject constructor(
-    private val repositoryRetrofit: CoinRepository,
-    private val getCoinsDetailRetrofitUseCase: GetDetailCoinsRetrofitUseCase = GetDetailCoinsRetrofitUseCase(
-        repositoryRetrofit
-    ),
+    private val getCoinsDetailRetrofitUseCase: GetDetailCoinsRetrofitUseCase
 ) : ViewModel() {
     private val _coinsDetailLiveData = MutableLiveData<CoinDetail>()
     val coinsDetailLiveData: LiveData<CoinDetail> = _coinsDetailLiveData
