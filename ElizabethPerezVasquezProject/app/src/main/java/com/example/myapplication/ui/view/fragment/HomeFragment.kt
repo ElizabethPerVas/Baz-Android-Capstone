@@ -13,7 +13,9 @@ import com.example.myapplication.databinding.FragmentHomeBinding
 import com.example.myapplication.ui.view.adapter.CoinAdapter
 import com.example.myapplication.ui.view.interfaces.ItemButtonCallback
 import com.example.myapplication.ui.viewmodel.CoinViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class HomeFragment : Fragment(), ItemButtonCallback {
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
@@ -36,6 +38,7 @@ class HomeFragment : Fragment(), ItemButtonCallback {
         container: ViewGroup?,
         savedInstanceState: Bundle?,
     ): View? {
+        super.onCreateView(inflater,container,savedInstanceState)
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         setupObservers()
         initView()

@@ -10,8 +10,9 @@ import com.example.myapplication.ui.view.adapter.AsksBidsAdapter
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.myapplication.data.model.response.OrderResponse
+import dagger.hilt.android.AndroidEntryPoint
 
-
+@AndroidEntryPoint
 class AsksBidsFragment : Fragment() {
 
     private var _binding: FragmentAsksBidsBinding? = null
@@ -35,6 +36,7 @@ class AsksBidsFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?,
     ): View? {
+        super.onCreateView(inflater, container, savedInstanceState)
         _binding = FragmentAsksBidsBinding.inflate(inflater, container, false)
         getDataBundle()
         initView()

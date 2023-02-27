@@ -5,7 +5,7 @@ import com.google.gson.annotations.SerializedName
 data class CoinModelResponse(
     @SerializedName("book")
     var nameCoin: String? = null,
-    @SerializedName("minium_amount")
+    @SerializedName("minimum_amount")
     var miniumAmount: String? = null,
     @SerializedName("maximum_amount")
     var maximumAmount: String? = null,

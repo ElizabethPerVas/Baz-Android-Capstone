@@ -15,7 +15,9 @@ import com.example.myapplication.data.database.entities.CoinDetailAskEntity
 import com.example.myapplication.data.database.entities.CoinDetailBidsEntity
 import com.example.myapplication.data.database.entities.CoinDetailEntity
 import com.example.myapplication.data.model.response.OrderResponse
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class CoinsFragment : Fragment() {
     private var _binding: FragmentCoinsBinding? = null
     private val binding get() = _binding!!
@@ -40,6 +42,7 @@ class CoinsFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?,
     ): View? {
+        super.onCreateView(inflater, container, savedInstanceState)
         _binding = FragmentCoinsBinding.inflate(inflater, container, false)
         getDataBundle()
         setupObservers()
