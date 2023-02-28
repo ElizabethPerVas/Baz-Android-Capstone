@@ -7,6 +7,4 @@ data class Bids(
     @SerializedName("amount") var amount: String,
     @SerializedName("price") var price: String,
     @SerializedName("oid") var oid: String? = null,
-) {
-
-}
+)

@@ -7,9 +7,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.ViewModelStore
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.myapplication.data.model.Coin
 import com.example.myapplication.data.model.request.OrderRequest
 import com.example.myapplication.databinding.FragmentHomeBinding
 import com.example.myapplication.ui.view.adapter.CoinAdapter
@@ -24,7 +24,7 @@ class HomeFragment : Fragment(), ItemButtonCallback {
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
     private val coinAdapter: CoinAdapter by lazy { CoinAdapter(this) }
-    private val coinViewModel: CoinViewModel by ViewModelDelegate()
+    private val coinViewModel: CoinViewModel by viewModels()
     private var enabled: Boolean = false
     private var nameCoin: String = ""
     private var minimumPrice: String = ""
@@ -41,7 +41,7 @@ class HomeFragment : Fragment(), ItemButtonCallback {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?,
-    ): View? {
+    ): View {
         super.onCreateView(inflater,container,savedInstanceState)
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         setupObservers()
@@ -87,7 +87,7 @@ class HomeFragment : Fragment(), ItemButtonCallback {
         this.minimumPrice = minimumPrice.toString()
         this.maximumPrice = maximumPrice.toString()
         val request = OrderRequest(enabled, nameCoin)
-        var bundle = Bundle()
+        val bundle = Bundle()
         bundle.putString("NAME_COIN", nameCoin)
         bundle.putString("MINIMUM_PRICE", minimumPrice)
         bundle.putString("MAXIMUM_PRICE", maximumPrice)

@@ -12,5 +12,4 @@ data class CoinDetailBidsEntity(
     @ColumnInfo(name = "amount") val amount: String,
     @ColumnInfo(name = "price") val price: String,
     @ColumnInfo(name = "oid") val oid: String? = null
-) {
-}
+)

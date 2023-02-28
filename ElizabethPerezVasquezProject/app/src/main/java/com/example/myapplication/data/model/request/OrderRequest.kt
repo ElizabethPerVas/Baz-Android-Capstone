@@ -6,5 +6,4 @@ import java.io.Serializable
 data class OrderRequest(
     @SerializedName("aggregate") var aggregate: Boolean,
     @SerializedName("book") var nameCoin: String? = null,
-) : Serializable {
-}
+) : Serializable

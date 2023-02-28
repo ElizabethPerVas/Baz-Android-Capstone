@@ -45,9 +45,6 @@ class AsksBidsAdapter() : ListAdapter<OrderResponse, AsksBidsAdapter.ViewHolderC
         RecyclerView.ViewHolder(binding.root) {
         fun bind(information: OrderResponse) {
             binding.apply {
-                if (!information.asks.isNullOrEmpty()) {
-
-                }
             }
         }
     }

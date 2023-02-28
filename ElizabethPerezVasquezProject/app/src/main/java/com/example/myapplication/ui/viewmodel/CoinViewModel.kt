@@ -4,9 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.myapplication.data.CoinRepository
 import com.example.myapplication.data.model.Coin
-import com.example.myapplication.data.model.response.CoinModelResponse
 import com.example.myapplication.domain.usecase.GetCoinsRetrofitUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch

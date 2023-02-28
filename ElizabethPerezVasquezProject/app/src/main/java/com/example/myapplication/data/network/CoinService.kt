@@ -1,6 +1,5 @@
 package com.example.myapplication.data.network
 
-import com.example.myapplication.core.RetrofitHelper
 import com.example.myapplication.data.model.response.CoinsDetailModelResponse
 import com.example.myapplication.data.model.response.CoinsModelResponse
 import com.example.myapplication.data.model.request.OrderRequest

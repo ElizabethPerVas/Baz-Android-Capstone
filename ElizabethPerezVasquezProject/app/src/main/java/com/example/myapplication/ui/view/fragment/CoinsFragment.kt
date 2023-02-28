@@ -15,8 +15,6 @@ import androidx.navigation.fragment.navArgs
 import com.example.myapplication.data.database.entities.CoinDetailAskEntity
 import com.example.myapplication.data.database.entities.CoinDetailBidsEntity
 import com.example.myapplication.data.database.entities.CoinDetailEntity
-import com.example.myapplication.data.model.response.OrderResponse
-import com.example.myapplication.ui.viewmodel.CoinViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlin.properties.ReadOnlyProperty
 import kotlin.reflect.KProperty
@@ -25,14 +23,14 @@ import kotlin.reflect.KProperty
 class CoinsFragment : Fragment() {
     private var _binding: FragmentCoinsBinding? = null
     private val binding get() = _binding!!
-    private val coinDetailViewModel: CoinDetailViewModel by ViewModelCoinDetailDelegate()
+    private val coinDetailViewModel: CoinDetailViewModel by viewModels()
     private var request: OrderRequest? = null
     var nameCoin: String = ""
     var minimumPrice: String = ""
     var maximumPrice: String = ""
-    var listAsks: List<CoinDetailAskEntity> = listOf()
-    var listBids: List<CoinDetailBidsEntity> = listOf()
-    var updateAll: String = ""
+    private var listAsks: List<CoinDetailAskEntity> = listOf()
+    private var listBids: List<CoinDetailBidsEntity> = listOf()
+    private var updateAll: String = ""
     var sequence: String = ""
     val args: CoinsFragmentArgs by navArgs()
 
@@ -48,7 +46,7 @@ class CoinsFragment : Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?,
-    ): View? {
+    ): View {
         super.onCreateView(inflater, container, savedInstanceState)
         _binding = FragmentCoinsBinding.inflate(inflater, container, false)
         getDataBundle()
@@ -60,8 +58,8 @@ class CoinsFragment : Fragment() {
 
     private fun onClick() {
         _binding?.btnAsk?.setOnClickListener {
-            var bundle = Bundle()
-            val response: CoinDetailEntity = CoinDetailEntity(
+            val bundle = Bundle()
+            val response = CoinDetailEntity(
                 asks = listAsks,
                 bids = listBids,
                 sequence = sequence,
@@ -76,8 +74,8 @@ class CoinsFragment : Fragment() {
         }
 
         _binding?.btnBids?.setOnClickListener {
-            var bundle = Bundle()
-            val response: CoinDetailEntity = CoinDetailEntity(
+            val bundle = Bundle()
+            val response = CoinDetailEntity(
                 asks = listAsks,
                 bids = listBids,
                 sequence = sequence,

@@ -30,5 +30,5 @@ fun CoinEntity.toDomain() = Coin(
     minimumPrice,
     maximumPrice,
     minimumValue,
-    maximunValue
+    maximumValue
 )

@@ -5,7 +5,7 @@ import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import com.example.myapplication.data.database.entities.CoinDetailEntity
-import com.example.myapplication.data.database.entities.CoinEntity
+import com.example.myapplication.data.model.request.OrderRequest
 
 @Dao
 interface CoinDetailDao {
@@ -14,7 +14,7 @@ interface CoinDetailDao {
     suspend fun getAllCoins(): CoinDetailEntity
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertAll(coins: CoinDetailEntity)
+    suspend fun insertDetail(coins: CoinDetailEntity)
 
     @Query("DELETE FROM coin_detail_table")
     suspend fun deleteAllCoins()

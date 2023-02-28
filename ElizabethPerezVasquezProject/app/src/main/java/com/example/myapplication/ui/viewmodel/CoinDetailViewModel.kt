@@ -4,7 +4,6 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.myapplication.data.CoinRepository
 import com.example.myapplication.data.model.CoinDetail
 import com.example.myapplication.data.model.request.OrderRequest
 import com.example.myapplication.domain.usecasedetailcoin.GetDetailCoinsRetrofitUseCase
