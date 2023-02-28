@@ -4,19 +4,19 @@ import com.google.gson.annotations.SerializedName
 
 data class CoinModelResponse(
     @SerializedName("book")
-    var nameCoin: String? = null,
+    var nameCoin: String,
     @SerializedName("minimum_amount")
-    var minimumAmount: String? = null,
+    var minimumAmount: String,
     @SerializedName("maximum_amount")
-    var maximumAmount: String? = null,
+    var maximumAmount: String,
     @SerializedName("minimum_price")
-    var minimumPrice: String? = null,
+    var minimumPrice: String,
     @SerializedName("maximum_price")
-    var maximumPrice: String? = null,
+    var maximumPrice: String,
     @SerializedName("minimum_value")
-    var minimumValue: String? = null,
+    var minimumValue: String,
     @SerializedName("maximum_value")
-    var maximunValue: String? = null,
+    var maximunValue: String
 ) {
 
 }

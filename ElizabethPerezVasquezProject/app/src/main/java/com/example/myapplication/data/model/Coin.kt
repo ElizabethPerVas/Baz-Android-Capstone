@@ -14,13 +14,13 @@ data class Coin(
 )
 
 fun CoinModelResponse.toDomain() = Coin(
-    nameCoin!!,
-    minimumAmount!!,
-    maximumAmount!!,
-    minimumPrice!!,
-    maximumPrice!!,
-    minimumValue!!,
-    maximunValue!!
+    nameCoin,
+    minimumAmount,
+    maximumAmount,
+    minimumPrice,
+    maximumPrice,
+    minimumValue,
+    maximunValue
 )
 
 fun CoinEntity.toDomain() = Coin(

@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.example.myapplication.data.model.request.OrderRequest
 import com.example.myapplication.databinding.FragmentCoinsBinding
@@ -15,13 +16,16 @@ import com.example.myapplication.data.database.entities.CoinDetailAskEntity
 import com.example.myapplication.data.database.entities.CoinDetailBidsEntity
 import com.example.myapplication.data.database.entities.CoinDetailEntity
 import com.example.myapplication.data.model.response.OrderResponse
+import com.example.myapplication.ui.viewmodel.CoinViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import kotlin.properties.ReadOnlyProperty
+import kotlin.reflect.KProperty
 
 @AndroidEntryPoint
 class CoinsFragment : Fragment() {
     private var _binding: FragmentCoinsBinding? = null
     private val binding get() = _binding!!
-    private val coinDetailViewModel: CoinDetailViewModel by viewModels()
+    private val coinDetailViewModel: CoinDetailViewModel by ViewModelCoinDetailDelegate()
     private var request: OrderRequest? = null
     var nameCoin: String = ""
     var minimumPrice: String = ""
@@ -126,4 +130,13 @@ class CoinsFragment : Fragment() {
             }
         }
     }
+}
+
+class ViewModelCoinDetailDelegate : ReadOnlyProperty<Fragment, CoinDetailViewModel> {
+    override fun getValue(thisRef: Fragment, property: KProperty<*>): CoinDetailViewModel {
+        val vp = ViewModelProvider(thisRef.viewModelStore, thisRef.defaultViewModelProviderFactory)
+        val vm = vp[CoinDetailViewModel::class.java]
+        return vm
+    }
+
 }

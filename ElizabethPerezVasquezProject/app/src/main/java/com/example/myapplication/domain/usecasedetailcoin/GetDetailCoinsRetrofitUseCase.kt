@@ -15,8 +15,8 @@ class GetDetailCoinsRetrofitUseCase @Inject constructor(
 
         return if (coinsDe.asks.isEmpty() || coinsDe.bids.isEmpty()) {
             repository.clearDetailCoins()
-            repository.insertDetailCoins(coinsDe.toCoinDetail().toDatabase())
-            coinsDe.toCoinDetail()
+            repository.insertDetailCoins(coinsDe.toDatabase())
+            coinsDe
         } else {
             repository.getDetailCoinsFromDatabase(request)
         }

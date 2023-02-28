@@ -6,21 +6,25 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.myapplication.data.model.Coin
 import com.example.myapplication.data.model.request.OrderRequest
 import com.example.myapplication.databinding.FragmentHomeBinding
 import com.example.myapplication.ui.view.adapter.CoinAdapter
 import com.example.myapplication.ui.view.interfaces.ItemButtonCallback
 import com.example.myapplication.ui.viewmodel.CoinViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import kotlin.properties.ReadOnlyProperty
+import kotlin.reflect.KProperty
 
 @AndroidEntryPoint
 class HomeFragment : Fragment(), ItemButtonCallback {
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
     private val coinAdapter: CoinAdapter by lazy { CoinAdapter(this) }
-    private val coinViewModel: CoinViewModel by viewModels()
+    private val coinViewModel: CoinViewModel by ViewModelDelegate()
     private var enabled: Boolean = false
     private var nameCoin: String = ""
     private var minimumPrice: String = ""
@@ -97,6 +101,15 @@ class HomeFragment : Fragment(), ItemButtonCallback {
         )
         findNavController().navigate(action)
     }
+}
+
+class ViewModelDelegate : ReadOnlyProperty<Fragment, CoinViewModel> {
+    override fun getValue(thisRef: Fragment, property: KProperty<*>): CoinViewModel {
+        val vp = ViewModelProvider(thisRef.viewModelStore, thisRef.defaultViewModelProviderFactory)
+        val vm = vp[CoinViewModel::class.java]
+        return vm
+    }
+
 }
 
 

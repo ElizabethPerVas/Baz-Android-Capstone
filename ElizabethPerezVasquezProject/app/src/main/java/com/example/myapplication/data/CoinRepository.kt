@@ -41,9 +41,9 @@ class CoinRepository @Inject constructor(
         coinDao.deleteAllCoins()
     }
 
-    suspend fun getDetailCoinsFromApi(request: OrderRequest): OrderResponse {
+    suspend fun getDetailCoinsFromApi(request: OrderRequest): CoinDetail {
         val response: OrderResponse = api.getDetail(request)
-        return response
+        return response.toDomain()
     }
 
     suspend fun getDetailCoinsFromDatabase(request: OrderRequest): CoinDetail {
@@ -51,8 +51,8 @@ class CoinRepository @Inject constructor(
         return response.toDomain()
     }
 
-    suspend fun insertDetailCoins(coinsDetail: CoinDetailEntity) {
-        coinDetailDao.insertAll(coinsDetail)
+    suspend fun insertDetailCoins(coinDetail: CoinDetailEntity) {
+        coinDetailDao.insertAll(coinDetail)
     }
 
     suspend fun clearDetailCoins() {
