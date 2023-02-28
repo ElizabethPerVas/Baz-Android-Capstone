@@ -5,7 +5,6 @@ import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import com.example.myapplication.data.database.entities.CoinDetailEntity
-import com.example.myapplication.data.model.request.OrderRequest
 
 @Dao
 interface CoinDetailDao {

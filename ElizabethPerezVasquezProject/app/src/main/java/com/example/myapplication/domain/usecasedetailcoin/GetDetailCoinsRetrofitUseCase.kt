@@ -11,13 +11,8 @@ class GetDetailCoinsRetrofitUseCase @Inject constructor(
 ) {
     suspend operator fun invoke(request: OrderRequest): CoinDetail {
         val coinsDe = repository.getDetailCoinsFromApi(request)
-
-        return if (coinsDe.asks.isEmpty() || coinsDe.bids.isEmpty()) {
-            repository.clearDetailCoins()
             repository.insertDetailCoins(coinsDe.toDatabase())
-            coinsDe
-        } else {
-            repository.getDetailCoinsFromDatabase()
-        }
+        return repository.getDetailCoinsFromDatabase()
+
     }
 }
