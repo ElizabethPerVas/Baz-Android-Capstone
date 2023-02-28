@@ -15,7 +15,7 @@ class AsksBidsAdapter() : ListAdapter<OrderResponse, AsksBidsAdapter.ViewHolderC
                 oldItem: OrderResponse,
                 newItem: OrderResponse,
             ): Boolean {
-                return oldItem.ask == newItem.ask
+                return oldItem.asks == newItem.asks
             }
 
             override fun areContentsTheSame(
@@ -45,7 +45,7 @@ class AsksBidsAdapter() : ListAdapter<OrderResponse, AsksBidsAdapter.ViewHolderC
         RecyclerView.ViewHolder(binding.root) {
         fun bind(information: OrderResponse) {
             binding.apply {
-                if (!information.ask.isNullOrEmpty()) {
+                if (!information.asks.isNullOrEmpty()) {
 
                 }
             }

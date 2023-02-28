@@ -6,15 +6,15 @@ data class CoinModelResponse(
     @SerializedName("book")
     var nameCoin: String? = null,
     @SerializedName("minimum_amount")
-    var miniumAmount: String? = null,
+    var minimumAmount: String? = null,
     @SerializedName("maximum_amount")
     var maximumAmount: String? = null,
     @SerializedName("minimum_price")
-    var miniumPrice: String? = null,
+    var minimumPrice: String? = null,
     @SerializedName("maximum_price")
-    var maxiumPrice: String? = null,
+    var maximumPrice: String? = null,
     @SerializedName("minimum_value")
-    var miniumValue: String? = null,
+    var minimumValue: String? = null,
     @SerializedName("maximum_value")
     var maximunValue: String? = null,
 ) {

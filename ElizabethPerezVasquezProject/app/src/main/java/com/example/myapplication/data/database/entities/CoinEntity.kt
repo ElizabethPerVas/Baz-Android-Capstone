@@ -10,20 +10,20 @@ data class CoinEntity(
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "id") val idCoin: Int = 0,
     @ColumnInfo(name = "book") val nameCoin: String,
-    @ColumnInfo(name = "minium_amount") val miniumAmount: String,
+    @ColumnInfo(name = "minimum_amount") val minimumAmount: String,
     @ColumnInfo(name = "maximum_amount") val maximumAmount: String,
-    @ColumnInfo(name = "minimum_price") val miniumPrice: String,
-    @ColumnInfo(name = "maximum_price") val maxiumPrice: String,
-    @ColumnInfo(name = "minimum_value") val miniumValue: String,
+    @ColumnInfo(name = "minimum_price") val minimumPrice: String,
+    @ColumnInfo(name = "maximum_price") val maximumPrice: String,
+    @ColumnInfo(name = "minimum_value") val minimumValue: String,
     @ColumnInfo(name = "maximum_value") val maximunValue: String,
 )
 
 fun Coin.toDatabase() = CoinEntity(
     nameCoin = nameCoin,
-    miniumAmount = miniumAmount,
+    minimumAmount = minimumAmount,
     maximumAmount = maximumAmount,
-    miniumPrice = miniumPrice,
-    maxiumPrice = maxiumPrice,
-    miniumValue = miniumValue,
+    minimumPrice = minimumPrice,
+    maximumPrice = maximumPrice,
+    minimumValue = minimumValue,
     maximunValue = maximunValue
 )

@@ -5,30 +5,30 @@ import com.example.myapplication.data.model.response.CoinModelResponse
 
 data class Coin(
     val nameCoin: String,
-    val miniumAmount: String,
+    val minimumAmount: String,
     val maximumAmount: String,
-    val miniumPrice: String,
-    val maxiumPrice: String,
-    val miniumValue: String,
+    val minimumPrice: String,
+    val maximumPrice: String,
+    val minimumValue: String,
     val maximunValue: String,
 )
 
 fun CoinModelResponse.toDomain() = Coin(
     nameCoin!!,
-    miniumAmount!!,
+    minimumAmount!!,
     maximumAmount!!,
-    miniumPrice!!,
-    maxiumPrice!!,
-    miniumValue!!,
+    minimumPrice!!,
+    maximumPrice!!,
+    minimumValue!!,
     maximunValue!!
 )
 
 fun CoinEntity.toDomain() = Coin(
     nameCoin,
-    miniumAmount,
+    minimumAmount,
     maximumAmount,
-    miniumPrice,
-    maxiumPrice,
-    miniumValue,
+    minimumPrice,
+    maximumPrice,
+    minimumValue,
     maximunValue
 )

@@ -4,34 +4,29 @@ import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.example.myapplication.data.model.CoinDetail
-import com.example.myapplication.data.model.CoinDetailAsk
-import com.example.myapplication.data.model.CoinDetailBids
-import com.example.myapplication.data.model.response.Ask
-import com.example.myapplication.data.model.response.Bids
 import com.example.myapplication.data.model.response.OrderResponse
-import dagger.multibindings.ClassKey
 import java.io.Serializable
 
 @Entity(tableName = "coin_detail_table")
 data class CoinDetailEntity(
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "id") val idDetailCoin: Int = 0,
-    @ColumnInfo(name = "ask") val ask: List<CoinDetailAskEntity>,
+    @ColumnInfo(name = "asks") val asks: List<CoinDetailAskEntity>,
     @ColumnInfo(name = "bids") val bids: List<CoinDetailBidsEntity>,
-    @ColumnInfo(name = "sequence") val sequence: Long,
-    @ColumnInfo(name = "update_at") val update_at: String,
+    @ColumnInfo(name = "sequence") val sequence: String,
+    @ColumnInfo(name = "updated_at") val updated_at: String,
 ) : Serializable
 
 fun CoinDetail.toDatabase() = CoinDetailEntity(
-    ask = ask,
+    asks = asks,
     bids = bids,
     sequence = sequence,
-    update_at = update_at
+    updated_at = updated_at
 )
 
 fun OrderResponse.toCoinDetail() = CoinDetail(
-    ask = ask,
+    asks = asks,
     bids = bids,
     sequence = sequence,
-    update_at = updateAt
+    updated_at = updatedAt
 )

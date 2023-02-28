@@ -23,8 +23,8 @@ class HomeFragment : Fragment(), ItemButtonCallback {
     private val coinViewModel: CoinViewModel by viewModels()
     private var enabled: Boolean = false
     private var nameCoin: String = ""
-    private var miniumPrice: String = ""
-    private var maxiumPrice: String = ""
+    private var minimumPrice: String = ""
+    private var maximumPrice: String = ""
 
     companion object {
         val TAG = HomeFragment::class.java.canonicalName!!
@@ -76,23 +76,23 @@ class HomeFragment : Fragment(), ItemButtonCallback {
     override fun onClickButton(
         id: String?,
         nameCoin: String?,
-        miniumPrice: String?,
-        maxiumPrice: String?,
+        minimumPrice: String?,
+        maximumPrice: String?,
     ) {
         this.nameCoin = nameCoin.toString()
-        this.miniumPrice = miniumPrice.toString()
-        this.maxiumPrice = maxiumPrice.toString()
+        this.minimumPrice = minimumPrice.toString()
+        this.maximumPrice = maximumPrice.toString()
         val request = OrderRequest(enabled, nameCoin)
         var bundle = Bundle()
         bundle.putString("NAME_COIN", nameCoin)
-        bundle.putString("MINIUM_PRICE", miniumPrice)
-        bundle.putString("MAXIUM_PRICE", maxiumPrice)
+        bundle.putString("MINIMUM_PRICE", minimumPrice)
+        bundle.putString("MAXIMUM_PRICE", maximumPrice)
         bundle.putSerializable("REQUEST", request)
 
         val action = HomeFragmentDirections.actionHomeFragmentToCoinsFragment(
             nameCoin = nameCoin.toString(),
-            miniumPrice = miniumPrice.toString(),
-            maxiumPrice = maxiumPrice.toString(),
+            minimumPrice = minimumPrice!!,
+            maximumPrice = maximumPrice!!,
             request
         )
         findNavController().navigate(action)

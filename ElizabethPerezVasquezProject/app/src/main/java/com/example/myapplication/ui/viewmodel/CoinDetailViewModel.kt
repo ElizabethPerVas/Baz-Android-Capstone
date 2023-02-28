@@ -8,9 +8,11 @@ import com.example.myapplication.data.CoinRepository
 import com.example.myapplication.data.model.CoinDetail
 import com.example.myapplication.data.model.request.OrderRequest
 import com.example.myapplication.domain.usecasedetailcoin.GetDetailCoinsRetrofitUseCase
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
+@HiltViewModel
 class CoinDetailViewModel @Inject constructor(
     private val getCoinsDetailRetrofitUseCase: GetDetailCoinsRetrofitUseCase
 ) : ViewModel() {

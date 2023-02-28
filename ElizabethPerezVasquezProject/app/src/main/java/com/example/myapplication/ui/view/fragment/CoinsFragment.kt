@@ -23,10 +23,13 @@ class CoinsFragment : Fragment() {
     private val binding get() = _binding!!
     private val coinDetailViewModel: CoinDetailViewModel by viewModels()
     private var request: OrderRequest? = null
+    var nameCoin: String = ""
+    var minimumPrice: String = ""
+    var maximumPrice: String = ""
     var listAsks: List<CoinDetailAskEntity> = listOf()
     var listBids: List<CoinDetailBidsEntity> = listOf()
     var updateAll: String = ""
-    var sequence: Long = 0L
+    var sequence: String = ""
     val args: CoinsFragmentArgs by navArgs()
 
 
@@ -55,10 +58,10 @@ class CoinsFragment : Fragment() {
         _binding?.btnAsk?.setOnClickListener {
             var bundle = Bundle()
             val response: CoinDetailEntity = CoinDetailEntity(
-                ask = listAsks,
+                asks = listAsks,
                 bids = listBids,
                 sequence = sequence,
-                update_at = updateAll
+                updated_at = updateAll
             )
             bundle.putSerializable("RESPONSE_ORDER", response)
             bundle.putBoolean("IS_ASK", true)
@@ -71,10 +74,10 @@ class CoinsFragment : Fragment() {
         _binding?.btnBids?.setOnClickListener {
             var bundle = Bundle()
             val response: CoinDetailEntity = CoinDetailEntity(
-                ask = listAsks,
+                asks = listAsks,
                 bids = listBids,
                 sequence = sequence,
-                update_at = updateAll
+                updated_at = updateAll
             )
             bundle.putSerializable("RESPONSE_ORDER", response)
             bundle.putBoolean("IS_ASK", false)
@@ -86,14 +89,17 @@ class CoinsFragment : Fragment() {
     }
 
     private fun initView() {
-        _binding?.tvNameDetailCoin?.text = args.nameCoin
-        _binding?.tvMiniumPrice?.text = args.miniumPrice
-        _binding?.tvMaximunPrice?.text = args.maxiumPrice
+        _binding?.tvNameDetailCoin?.text = nameCoin
+        _binding?.tvMiniumPrice?.text = minimumPrice
+        _binding?.tvMaximunPrice?.text = maximumPrice
     }
 
     private fun getDataBundle() {
         requireArguments().let {
             request = args.request
+            nameCoin = args.nameCoin
+            minimumPrice = args.minimumPrice
+            maximumPrice = args.maximumPrice
         }
     }
 
@@ -111,12 +117,12 @@ class CoinsFragment : Fragment() {
     private fun setupObservers() {
         coinDetailViewModel.apply {
             coinsDetailLiveData.observe(viewLifecycleOwner) {
-                _binding?.tvUpdateAt?.text = it.update_at
-                _binding?.tvSequenceDetailCoin?.text = it.sequence.toString()
-                listAsks = it.ask
+                _binding?.tvUpdateAt?.text = it.updated_at
+                _binding?.tvSequenceDetailCoin?.text = it.sequence
+                listAsks = it.asks
                 listBids = it.bids
-                updateAll = it.update_at
-                sequence = it.sequence!!
+                updateAll = it.updated_at
+                sequence = it.sequence
             }
         }
     }

@@ -15,12 +15,12 @@ fun Bids.toDomain() = CoinDetailBids(
     book,
     amount,
     price,
-    oid
+    oid!!
 )
 
 fun CoinDetailBidsEntity.toDomain() = CoinDetailBids(
     book,
     amount,
     price,
-    oid
+    oid!!
 )

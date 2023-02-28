@@ -52,8 +52,8 @@ class CoinAdapter(private val callback: ItemButtonCallback) :
         fun bind(information: Coin) {
             binding.apply {
                 tvNameCoin.setText(information.nameCoin)
-                tvMiniumAmount.setText("$" + information.miniumPrice)
-                tvMaximunAmount.setText("$" + information.maxiumPrice)
+                tvMiniumAmount.setText("$" + information.minimumPrice)
+                tvMaximunAmount.setText("$" + information.maximumPrice)
                 val icon = when (information.nameCoin) {
                     "eth_btc" ->  R.drawable.eth
                     "uni_usd" -> R.drawable.uni
@@ -84,8 +84,8 @@ class CoinAdapter(private val callback: ItemButtonCallback) :
                     callback.onClickButton(
                         idBtn,
                         information.nameCoin,
-                        information.miniumPrice,
-                        information.maxiumPrice
+                        information.minimumPrice,
+                        information.maximumPrice
                     )
                 }
                 cbAggregate.setOnClickListener {

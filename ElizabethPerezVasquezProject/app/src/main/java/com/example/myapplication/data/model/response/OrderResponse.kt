@@ -8,10 +8,10 @@ import com.google.gson.annotations.SerializedName
 import java.io.Serializable
 
 data class OrderResponse(
-    @SerializedName("ask") var ask: List<CoinDetailAskEntity>,
+    @SerializedName("asks") var asks: List<CoinDetailAskEntity>,
     @SerializedName("bids") var bids: List<CoinDetailBidsEntity>,
-    @SerializedName("sequence") var sequence: Long,
-    @SerializedName("update_at") var updateAt: String,
+    @SerializedName("sequence") var sequence: String,
+    @SerializedName("updated_at") var updatedAt: String,
 ) : Serializable {
 
 }

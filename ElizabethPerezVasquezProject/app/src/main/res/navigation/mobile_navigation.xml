@@ -24,11 +24,11 @@
             app:argType="string"
             app:nullable="false" />
         <argument
-            android:name="miniumPrice"
+            android:name="minimumPrice"
             app:argType="string"
             app:nullable="false" />
         <argument
-            android:name="maxiumPrice"
+            android:name="maximumPrice"
             app:argType="string"
             app:nullable="false" />
         <argument
