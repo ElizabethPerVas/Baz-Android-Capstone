@@ -41,6 +41,7 @@ class HomeFragment : Fragment(), ItemButtonCallback {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         coinViewModel.getCoin()
+        //coinViewModel.getCoinRx()
     }
 
     private fun initView() {

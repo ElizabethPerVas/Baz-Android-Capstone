@@ -51,11 +51,7 @@ class AsksBidsFragment : Fragment() {
     private fun initView() {
         _binding!!.rvAskBids.setHasFixedSize(false)
         _binding!!.rvAskBids.layoutManager = LinearLayoutManager(context)
-        if (isAsk) {
-            askBidsAdapter.submitList(listAsks)
-        } else {
-            askBidsAdapter.submitList(listAsks)
-        }
+        askBidsAdapter.submitList(listAsks)
         _binding!!.rvAskBids.adapter = askBidsAdapter
     }
 

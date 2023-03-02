@@ -87,12 +87,6 @@ class CoinsFragment : Fragment() {
         _binding?.tvNameDetailCoin?.text = nameCoin
         _binding?.tvMiniumPrice?.text = minimumPrice
         _binding?.tvMaximunPrice?.text = maximumPrice
-        _binding?.ivImageCoin?.setImageDrawable(
-            ContextCompat.getDrawable(
-                requireContext(),
-                imageCoin
-            )
-        )
     }
 
     private fun getDataBundle() {

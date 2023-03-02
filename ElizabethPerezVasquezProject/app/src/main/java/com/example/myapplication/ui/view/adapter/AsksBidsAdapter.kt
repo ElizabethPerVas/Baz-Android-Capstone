@@ -1,8 +1,6 @@
 package com.example.myapplication.ui.view.adapter
 
-import android.util.Log
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
@@ -50,19 +48,10 @@ class AsksBidsAdapter :
         fun bind(information: CoinDetailAskEntity) {
             binding.apply {
                 tvNameCoinAskBids.text = information.book
-                Log.e("TAG_APP", "book: " + information.book)
-                Log.e("TAG_APP", "price: " + information.price)
-                Log.e("TAG_APP", "oid: " + information.oid)
-                Log.e("TAG_APP", "amount: " + information.amount)
-
                 tvPriceAskBids.text = information.price
                 tvAmountAskBids.text = information.amount
-                if (information.oid!!.isEmpty()) {
-                    tvOrderAskBids.visibility = View.GONE
-                } else {
-                    tvOrderAskBids.text = information.oid
+                tvOrderAskBids.text = information.oid
 
-                }
             }
         }
     }

@@ -5,6 +5,7 @@ import com.example.myapplication.data.model.response.CoinsModelResponse
 import com.example.myapplication.data.model.request.OrderRequest
 import com.example.myapplication.data.model.response.CoinModelResponse
 import com.example.myapplication.data.model.response.OrderResponse
+import io.reactivex.rxjava3.core.Observable
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import retrofit2.Response
@@ -18,6 +19,10 @@ class CoinService @Inject constructor(private val api: CoinApiClient) {
                 api.getAllCoins()
             response.body()?.payload ?: emptyList()
         }
+    }
+
+    fun getCoinsRx() : Observable<Response<CoinsModelResponse>> {
+        return api.getAllCoinsRx()
     }
 
     suspend fun getDetail(request: OrderRequest): OrderResponse {

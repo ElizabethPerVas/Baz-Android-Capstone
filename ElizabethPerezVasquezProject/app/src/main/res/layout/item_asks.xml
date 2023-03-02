@@ -120,7 +120,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:hint="@string/order_id"
+            android:hint="NA"
             app:layout_constraintBottom_toBottomOf="@+id/tvOrderAskBidsLabel"
             app:layout_constraintStart_toEndOf="@+id/tvOrderAskBidsLabel"
             app:layout_constraintTop_toTopOf="@+id/tvOrderAskBidsLabel">

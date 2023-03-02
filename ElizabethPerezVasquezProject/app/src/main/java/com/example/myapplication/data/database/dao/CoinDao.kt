@@ -12,9 +12,13 @@ interface CoinDao {
     @Query("SELECT * FROM coin_table ORDER BY book DESC")
     suspend fun getAllCoins(): List<CoinEntity>
 
+    @Query("SELECT * FROM coin_table ORDER BY book DESC")
+    fun getAllCoinsRx(): List<CoinEntity>
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertAll(coins: List<CoinEntity>)
 
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    fun insertAllRx(coins: List<CoinEntity>)
     @Query("DELETE FROM coin_table")
     suspend fun deleteAllCoins()
 
