@@ -55,8 +55,4 @@ class CoinRepository @Inject constructor(
         coinDetailDao.insertDetail(coinDetail)
     }
 
-    suspend fun clearDetailCoins() {
-        coinDetailDao.deleteAllCoins()
-    }
-
 }

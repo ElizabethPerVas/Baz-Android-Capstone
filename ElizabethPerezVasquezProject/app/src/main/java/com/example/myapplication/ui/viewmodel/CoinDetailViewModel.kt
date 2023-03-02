@@ -13,7 +13,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class CoinDetailViewModel @Inject constructor(
-    private val getCoinsDetailRetrofitUseCase: GetDetailCoinsRetrofitUseCase
+    private val getCoinsDetailRetrofitUseCase: GetDetailCoinsRetrofitUseCase,
 ) : ViewModel() {
     private val _coinsDetailLiveData = MutableLiveData<CoinDetail>()
     val coinsDetailLiveData: LiveData<CoinDetail> = _coinsDetailLiveData

@@ -8,7 +8,6 @@ import com.example.myapplication.data.database.entities.CoinDetailEntity
 
 @Dao
 interface CoinDetailDao {
-
     @Query("SELECT * FROM coin_detail_table ORDER BY sequence DESC")
     suspend fun getAllCoins(): CoinDetailEntity
 

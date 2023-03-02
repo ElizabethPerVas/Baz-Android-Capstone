@@ -25,5 +25,5 @@ fun Coin.toDatabase() = CoinEntity(
     minimumPrice = minimumPrice,
     maximumPrice = maximumPrice,
     minimumValue = minimumValue,
-    maximumValue = maximunValue
+    maximumValue = maximumValue
 )

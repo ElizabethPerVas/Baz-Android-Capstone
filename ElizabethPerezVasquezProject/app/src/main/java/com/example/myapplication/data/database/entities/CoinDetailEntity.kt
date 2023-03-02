@@ -4,7 +4,6 @@ import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.example.myapplication.data.model.CoinDetail
-import com.example.myapplication.data.model.response.OrderResponse
 import java.io.Serializable
 
 @Entity(tableName = "coin_detail_table")
@@ -22,11 +21,4 @@ fun CoinDetail.toDatabase() = CoinDetailEntity(
     bids = bids,
     sequence = sequence,
     updated_at = updated_at
-)
-
-fun OrderResponse.toCoinDetail() = CoinDetail(
-    asks = asks,
-    bids = bids,
-    sequence = sequence,
-    updated_at = updatedAt
 )

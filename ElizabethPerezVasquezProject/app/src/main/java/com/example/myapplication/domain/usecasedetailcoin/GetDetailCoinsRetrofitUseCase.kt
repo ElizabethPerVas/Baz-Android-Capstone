@@ -11,7 +11,7 @@ class GetDetailCoinsRetrofitUseCase @Inject constructor(
 ) {
     suspend operator fun invoke(request: OrderRequest): CoinDetail {
         val coinsDe = repository.getDetailCoinsFromApi(request)
-            repository.insertDetailCoins(coinsDe.toDatabase())
+        repository.insertDetailCoins(coinsDe.toDatabase())
         return repository.getDetailCoinsFromDatabase()
 
     }

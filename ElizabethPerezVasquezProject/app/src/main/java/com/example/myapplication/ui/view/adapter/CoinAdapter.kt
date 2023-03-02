@@ -47,15 +47,17 @@ class CoinAdapter(private val callback: ItemButtonCallback) :
         holder.bind(getItem(position))
     }
 
-    inner class ViewHolderCoin(val binding: ItemCoinBinding) :
+    inner class ViewHolderCoin(private val binding: ItemCoinBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(information: Coin) {
             binding.apply {
-                tvNameCoin.setText(information.nameCoin)
-                tvMiniumAmount.setText("$" + information.minimumPrice)
-                tvMaximunAmount.setText("$" + information.maximumPrice)
+                tvNameCoin.text = information.nameCoin
+                tvMiniumAmount.text =
+                    binding.root.context.getString(R.string.Money) + information.minimumPrice
+                tvMaximunAmount.text =
+                    binding.root.context.getString(R.string.Money) + information.maximumPrice
                 val icon = when (information.nameCoin) {
-                    "eth_btc" ->  R.drawable.eth
+                    "eth_btc" -> R.drawable.eth
                     "uni_usd" -> R.drawable.uni
                     "xrp_btc" -> R.drawable.xrp
                     "ltc_btc" -> R.drawable.ltc
@@ -75,7 +77,6 @@ class CoinAdapter(private val callback: ItemButtonCallback) :
                         icon
                     )
                 )
-
                 ivCoin.setImageDrawable(ContextCompat.getDrawable(binding.root.context, icon))
                 val idCheckBox = "CheckboxAggregate"
                 val idBtn = "BtnShowMore"

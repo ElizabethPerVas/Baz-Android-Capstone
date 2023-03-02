@@ -6,8 +6,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.ViewModelStore
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.myapplication.data.model.request.OrderRequest
@@ -16,8 +14,6 @@ import com.example.myapplication.ui.view.adapter.CoinAdapter
 import com.example.myapplication.ui.view.interfaces.ItemButtonCallback
 import com.example.myapplication.ui.viewmodel.CoinViewModel
 import dagger.hilt.android.AndroidEntryPoint
-import kotlin.properties.ReadOnlyProperty
-import kotlin.reflect.KProperty
 
 @AndroidEntryPoint
 class HomeFragment : Fragment(), ItemButtonCallback {
@@ -30,19 +26,12 @@ class HomeFragment : Fragment(), ItemButtonCallback {
     private var minimumPrice: String = ""
     private var maximumPrice: String = ""
 
-    companion object {
-        val TAG = HomeFragment::class.java.canonicalName!!
-
-        @JvmStatic
-        fun newInstance() = HomeFragment()
-    }
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?,
     ): View {
-        super.onCreateView(inflater,container,savedInstanceState)
+        super.onCreateView(inflater, container, savedInstanceState)
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         setupObservers()
         initView()
@@ -102,15 +91,5 @@ class HomeFragment : Fragment(), ItemButtonCallback {
         findNavController().navigate(action)
     }
 }
-
-class ViewModelDelegate : ReadOnlyProperty<Fragment, CoinViewModel> {
-    override fun getValue(thisRef: Fragment, property: KProperty<*>): CoinViewModel {
-        val vp = ViewModelProvider(thisRef.viewModelStore, thisRef.defaultViewModelProviderFactory)
-        val vm = vp[CoinViewModel::class.java]
-        return vm
-    }
-
-}
-
 
 

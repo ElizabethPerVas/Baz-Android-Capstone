@@ -50,6 +50,10 @@
             android:name="responseArrayAskBids"
             app:argType="com.example.myapplication.data.database.entities.CoinDetailEntity"
             app:nullable="false" />
+        <argument
+            android:name="isAsk"
+            app:argType="boolean"
+            app:nullable="false" />
     </fragment>
 
 </navigation>

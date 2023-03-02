@@ -5,8 +5,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.example.myapplication.data.model.request.OrderRequest
 import com.example.myapplication.databinding.FragmentCoinsBinding
@@ -16,8 +16,6 @@ import com.example.myapplication.data.database.entities.CoinDetailAskEntity
 import com.example.myapplication.data.database.entities.CoinDetailBidsEntity
 import com.example.myapplication.data.database.entities.CoinDetailEntity
 import dagger.hilt.android.AndroidEntryPoint
-import kotlin.properties.ReadOnlyProperty
-import kotlin.reflect.KProperty
 
 @AndroidEntryPoint
 class CoinsFragment : Fragment() {
@@ -28,19 +26,12 @@ class CoinsFragment : Fragment() {
     var nameCoin: String = ""
     var minimumPrice: String = ""
     var maximumPrice: String = ""
+    private var imageCoin: Int = 0
     private var listAsks: List<CoinDetailAskEntity> = listOf()
     private var listBids: List<CoinDetailBidsEntity> = listOf()
     private var updateAll: String = ""
-    var sequence: String = ""
-    val args: CoinsFragmentArgs by navArgs()
-
-
-    companion object {
-        val TAG = CoinsFragment::class.java.canonicalName!!
-
-        @JvmStatic
-        fun newInstance() = CoinsFragment()
-    }
+    private var sequence: String = ""
+    private val args: CoinsFragmentArgs by navArgs()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -68,7 +59,8 @@ class CoinsFragment : Fragment() {
             bundle.putSerializable("RESPONSE_ORDER", response)
             bundle.putBoolean("IS_ASK", true)
             val action = CoinsFragmentDirections.actionCoinsFragmentToAsksBidsFragment(
-                response
+                response,
+                isAsk = true
             )
             findNavController().navigate(action)
         }
@@ -84,7 +76,8 @@ class CoinsFragment : Fragment() {
             bundle.putSerializable("RESPONSE_ORDER", response)
             bundle.putBoolean("IS_ASK", false)
             val action = CoinsFragmentDirections.actionCoinsFragmentToAsksBidsFragment(
-                response
+                response,
+                isAsk = false
             )
             findNavController().navigate(action)
         }
@@ -94,6 +87,12 @@ class CoinsFragment : Fragment() {
         _binding?.tvNameDetailCoin?.text = nameCoin
         _binding?.tvMiniumPrice?.text = minimumPrice
         _binding?.tvMaximunPrice?.text = maximumPrice
+        _binding?.ivImageCoin?.setImageDrawable(
+            ContextCompat.getDrawable(
+                requireContext(),
+                imageCoin
+            )
+        )
     }
 
     private fun getDataBundle() {
@@ -119,7 +118,7 @@ class CoinsFragment : Fragment() {
     private fun setupObservers() {
         coinDetailViewModel.apply {
             coinsDetailLiveData.observe(viewLifecycleOwner) {
-                _binding?.tvUpdateAt?.text = it.updated_at
+                _binding?.tvUpdateAt?.text = it.updated_at.split("T1", "T2", "T0")[0]
                 _binding?.tvSequenceDetailCoin?.text = it.sequence
                 listAsks = it.asks
                 listBids = it.bids
@@ -128,13 +127,4 @@ class CoinsFragment : Fragment() {
             }
         }
     }
-}
-
-class ViewModelCoinDetailDelegate : ReadOnlyProperty<Fragment, CoinDetailViewModel> {
-    override fun getValue(thisRef: Fragment, property: KProperty<*>): CoinDetailViewModel {
-        val vp = ViewModelProvider(thisRef.viewModelStore, thisRef.defaultViewModelProviderFactory)
-        val vm = vp[CoinDetailViewModel::class.java]
-        return vm
-    }
-
 }

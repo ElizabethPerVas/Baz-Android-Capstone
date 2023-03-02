@@ -10,7 +10,7 @@ data class Coin(
     val minimumPrice: String,
     val maximumPrice: String,
     val minimumValue: String,
-    val maximunValue: String,
+    val maximumValue: String,
 )
 
 fun CoinModelResponse.toDomain() = Coin(
@@ -20,7 +20,7 @@ fun CoinModelResponse.toDomain() = Coin(
     minimumPrice,
     maximumPrice,
     minimumValue,
-    maximunValue
+    maximumValue
 )
 
 fun CoinEntity.toDomain() = Coin(
