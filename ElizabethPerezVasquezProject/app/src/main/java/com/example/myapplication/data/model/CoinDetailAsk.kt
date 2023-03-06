@@ -14,14 +14,14 @@ fun Ask.toDomain() = CoinDetailAsk(
     book,
     amount,
     price,
-    oid
+    oid!!
 )
 
 fun CoinDetailAskEntity.toDomain() = CoinDetailAsk(
     book,
     amount,
     price,
-    oid
+    oid!!
 )
 
 fun CoinDetailAsk.toDatabase() = CoinDetailAskEntity(

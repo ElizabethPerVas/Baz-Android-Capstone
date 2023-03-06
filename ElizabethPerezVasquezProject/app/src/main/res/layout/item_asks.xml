@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mainContent"
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
@@ -22,6 +21,7 @@
             android:layout_height="wrap_content"
             android:hint="@string/title_detail"
             android:layout_marginTop="16dp"
+            android:visibility="gone"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
@@ -120,7 +120,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:hint="@string/order_id"
+            android:hint="NA"
             app:layout_constraintBottom_toBottomOf="@+id/tvOrderAskBidsLabel"
             app:layout_constraintStart_toEndOf="@+id/tvOrderAskBidsLabel"
             app:layout_constraintTop_toTopOf="@+id/tvOrderAskBidsLabel">

@@ -13,7 +13,9 @@ import com.example.myapplication.databinding.FragmentHomeBinding
 import com.example.myapplication.ui.view.adapter.CoinAdapter
 import com.example.myapplication.ui.view.interfaces.ItemButtonCallback
 import com.example.myapplication.ui.viewmodel.CoinViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class HomeFragment : Fragment(), ItemButtonCallback {
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
@@ -21,21 +23,15 @@ class HomeFragment : Fragment(), ItemButtonCallback {
     private val coinViewModel: CoinViewModel by viewModels()
     private var enabled: Boolean = false
     private var nameCoin: String = ""
-    private var miniumPrice: String = ""
-    private var maxiumPrice: String = ""
-
-    companion object {
-        val TAG = HomeFragment::class.java.canonicalName!!
-
-        @JvmStatic
-        fun newInstance() = HomeFragment()
-    }
+    private var minimumPrice: String = ""
+    private var maximumPrice: String = ""
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?,
-    ): View? {
+    ): View {
+        super.onCreateView(inflater, container, savedInstanceState)
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         setupObservers()
         initView()
@@ -45,6 +41,7 @@ class HomeFragment : Fragment(), ItemButtonCallback {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         coinViewModel.getCoin()
+        //coinViewModel.getCoinRx()
     }
 
     private fun initView() {
@@ -73,28 +70,27 @@ class HomeFragment : Fragment(), ItemButtonCallback {
     override fun onClickButton(
         id: String?,
         nameCoin: String?,
-        miniumPrice: String?,
-        maxiumPrice: String?,
+        minimumPrice: String?,
+        maximumPrice: String?,
     ) {
         this.nameCoin = nameCoin.toString()
-        this.miniumPrice = miniumPrice.toString()
-        this.maxiumPrice = maxiumPrice.toString()
+        this.minimumPrice = minimumPrice.toString()
+        this.maximumPrice = maximumPrice.toString()
         val request = OrderRequest(enabled, nameCoin)
-        var bundle = Bundle()
+        val bundle = Bundle()
         bundle.putString("NAME_COIN", nameCoin)
-        bundle.putString("MINIUM_PRICE", miniumPrice)
-        bundle.putString("MAXIUM_PRICE", maxiumPrice)
+        bundle.putString("MINIMUM_PRICE", minimumPrice)
+        bundle.putString("MAXIMUM_PRICE", maximumPrice)
         bundle.putSerializable("REQUEST", request)
 
         val action = HomeFragmentDirections.actionHomeFragmentToCoinsFragment(
             nameCoin = nameCoin.toString(),
-            miniumPrice = miniumPrice.toString(),
-            maxiumPrice = maxiumPrice.toString(),
+            minimumPrice = minimumPrice!!,
+            maximumPrice = maximumPrice!!,
             request
         )
         findNavController().navigate(action)
     }
 }
-
 
 

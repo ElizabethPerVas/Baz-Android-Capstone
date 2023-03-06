@@ -5,25 +5,27 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.example.myapplication.data.model.response.OrderResponse
+import com.example.myapplication.data.database.entities.CoinDetailAskEntity
 import com.example.myapplication.databinding.ItemAsksBinding
 
-class AsksBidsAdapter() : ListAdapter<OrderResponse, AsksBidsAdapter.ViewHolderCoin>(diffCallback) {
+class AsksBidsAdapter :
+    ListAdapter<CoinDetailAskEntity, AsksBidsAdapter.ViewHolderCoin>(diffCallback) {
     companion object {
-        val diffCallback = object : DiffUtil.ItemCallback<OrderResponse>() {
+        val diffCallback = object : DiffUtil.ItemCallback<CoinDetailAskEntity>() {
             override fun areItemsTheSame(
-                oldItem: OrderResponse,
-                newItem: OrderResponse,
+                oldItem: CoinDetailAskEntity,
+                newItem: CoinDetailAskEntity,
             ): Boolean {
-                return oldItem.ask == newItem.ask
+                return oldItem.book == newItem.book
             }
 
             override fun areContentsTheSame(
-                oldItem: OrderResponse,
-                newItem: OrderResponse,
+                oldItem: CoinDetailAskEntity,
+                newItem: CoinDetailAskEntity,
             ): Boolean {
                 return oldItem == newItem
             }
+
         }
     }
 
@@ -41,13 +43,15 @@ class AsksBidsAdapter() : ListAdapter<OrderResponse, AsksBidsAdapter.ViewHolderC
         holder.bind(getItem(position))
     }
 
-    inner class ViewHolderCoin(val binding: ItemAsksBinding) :
+    inner class ViewHolderCoin(private val binding: ItemAsksBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(information: OrderResponse) {
+        fun bind(information: CoinDetailAskEntity) {
             binding.apply {
-                if (!information.ask.isNullOrEmpty()) {
+                tvNameCoinAskBids.text = information.book
+                tvPriceAskBids.text = information.price
+                tvAmountAskBids.text = information.amount
+                tvOrderAskBids.text = information.oid
 
-                }
             }
         }
     }

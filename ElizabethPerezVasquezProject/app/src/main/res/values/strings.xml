@@ -27,13 +27,14 @@
     <string name="order_id">Order ID: </string>
     <string name="btn_asks">Show Asks </string>
     <string name="btn_bids">Show Bids</string>
-    <string name="name_fragment_home">HomeFragment</string>
-    <string name="name_fragment_coins">CoinsFragment</string>
+    <string name="name_fragment_home">Bitso Coin</string>
+    <string name="name_fragment_coins">CoinsDetailFragment</string>
     <string name="name_fragment_asksbids">AsksBidsFragment</string>
 
 
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="Money">$</string>
 
 </resources>

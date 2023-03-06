@@ -11,6 +11,8 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import javax.inject.Singleton
 import okhttp3.logging.HttpLoggingInterceptor.Level.BODY
+import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
+import retrofit2.adapter.rxjava3.RxJava3CallAdapterFactory
 import java.util.concurrent.TimeUnit
 
 
@@ -20,7 +22,7 @@ object NetworkModule {
 
     @Singleton
     @Provides
-    fun providesHttpLoggingInterceptor() : HttpLoggingInterceptor =
+    fun providesHttpLoggingInterceptor(): HttpLoggingInterceptor =
         HttpLoggingInterceptor().apply { level = BODY }
 
     @Singleton
@@ -48,6 +50,7 @@ object NetworkModule {
             .baseUrl("https://api.bitso.com/v3/")
             .client(okHttpClient)
             .addConverterFactory(GsonConverterFactory.create())
+            .addCallAdapterFactory(RxJava3CallAdapterFactory.create())
             .build()
     }
 
@@ -56,4 +59,5 @@ object NetworkModule {
     fun provideCoinApiClient(retrofit: Retrofit): CoinApiClient {
         return retrofit.create(CoinApiClient::class.java)
     }
+
 }
